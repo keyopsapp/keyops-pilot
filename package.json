@@ -1,5 +1,5 @@
 {
-  "name": "BrophysReactBoilerplate",
+  "name": "BrophyReactStarter",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -61,7 +61,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "repository": {
-    "url": "https://github.com/brybrophy/react-mobx-react-router4-webpack2-sass-boilerplate.git",
+    "url": "https://github.com/brybrophy/brophy-react-starter",
     "type": "git"
   }
 }
