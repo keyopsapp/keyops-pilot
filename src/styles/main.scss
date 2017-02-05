@@ -1,5 +1,10 @@
+// Abstracts
+@import 'abstracts/aspectRatio';
+@import 'abstracts/functions';
+@import 'abstracts/includeMedia';
+@import 'abstracts/variables';
+
 // Base
-@import 'base/variables';
 @import 'base/reset';
 @import 'base/base';
 @import 'base/typography';
@@ -7,5 +12,15 @@
 // Components
 @import 'components/page';
 
+// Layout
+@import 'layout/footer';
+@import '/layout/topNav';
+
 // Pages
 @import 'pages/home';
+
+// Themes
+@import 'themes/default';
+
+// Vendors
+@import 'vendors/exampleVendor';
