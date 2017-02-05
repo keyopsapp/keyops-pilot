@@ -1,39 +1,29 @@
 html {
 	font-family: $primary-font-stack;
-	font-size: 100%;
+	font-size: 62.5%;
 	font-style: normal;
 	font-weight: normal;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
-	line-height: 1.5;
 }
 
 body {
-	color: #666;
+	color: $color-primary;
 	line-height: 1.333;
 }
 
-h1 {
-  margin-top: 0;
-  font-size: 3.998em;
-}
+h1 {font-size: type-scale(4)}
 
-h1, h2 {font-size: 2.827em;}
+h2 {font-size: type-scale(3)}
 
-h3 {font-size: 1.999em;}
+h3 {font-size: type-scale(2)}
 
-h4 {font-size: 1.414em;}
+h4 {font-size: type-scale(1)}
 
-small, .font_small {font-size: 0.707em;}
+h5 {font-size: type-scale(-1)}
 
-a {
-	text-decoration: none;
-	cursor: pointer;
-	color: rgba(#000, .9);
-	&:hover {
-		color: rgba(#000, 1);
-	}
-	&.active {
-		color: rgba(#000, 1);
-	}
-}
+h6 {font-size: type-scale(-2)}
+
+p {font-size: type-scale(0)}
+
+small {font-size: type-scale(-3)}
