@@ -3,13 +3,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './components/App'
-import AppState from './stores/AppState'
+import AppStore from './stores/AppStore'
 
-const appState = new AppState();
+const stores = {
+    appStore: new AppStore()
+}
 
 ReactDOM.render(
   <AppContainer>
-    <App store={appState} />
+    <App stores={stores} />
   </AppContainer>,
   document.getElementById('root')
 );
@@ -20,7 +22,7 @@ if (module.hot) {
     const NextApp = require('./components/App').default;
     ReactDOM.render(
       <AppContainer>
-        <NextApp store={appState} />
+        <NextApp stores={stores} />
       </AppContainer>
       ,
       document.getElementById('root')

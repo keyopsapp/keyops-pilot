@@ -1,5 +1,5 @@
 {
-  "name": "MartinsReactBoilerplate",
+  "name": "BrophysReactBoilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -17,7 +17,7 @@
     "ES6",
     "ES7"
   ],
-  "author": "Martin Haagensli",
+  "author": "Bryan Brophy",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
@@ -29,6 +29,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "chunk-manifest-webpack-plugin": "^1.0.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.22.0",
@@ -41,8 +42,10 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "beta",
-    "webpack-dev-server": "^2.1.0-beta.8"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-manifest-plugin": "^1.1.0",
+    "webpack-md5-hash": "0.0.5"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -56,11 +59,10 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router-dom": "4.0.0-beta.3",
-    "webpack-dev-server": "beta",
     "whatwg-fetch": "^1.0.0"
   },
   "repository": {
-    "url": "git@github.com:mhaagens/react-mobx-react-router4-boilerplate.git",
+    "url": "https://github.com/brybrophy/react-mobx-react-router4-webpack2-sass-boilerplate.git",
     "type": "git"
   }
 }

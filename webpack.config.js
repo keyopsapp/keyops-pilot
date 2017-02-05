@@ -22,7 +22,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 include: path.join(__dirname, "src"),
                 loader: "babel-loader",
                 query: {
@@ -51,6 +51,9 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        extensions: ['*', '.js', '.jsx'],
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -69,4 +72,3 @@ module.exports = {
         })
     ]
 };
-
