@@ -1,6 +1,6 @@
 {
   "name": "generator-brophy-react-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A project boilerplate with React, React-Router 4, MobX, Webpack 2, and SASS",
   "main": "webpack.config.js",
   "scripts": {
