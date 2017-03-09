@@ -4,7 +4,7 @@
   "description": "A project boilerplate with React, React-Router 4, MobX, Webpack 2, and SASS",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "build": "rimraf ./dist && webpack --config webpack.config.production.js",
     "preview": "http-server ./dist -p 1234 -c-1",
     "test": "echo \"Error: no test specified\" && exit 1",
