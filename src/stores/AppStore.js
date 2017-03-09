@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import axios from 'axios';
 
 class AppStore {
     @observable welcomeMessage;
@@ -8,7 +9,13 @@ class AppStore {
     }
 
     @action setWelcomeMessage(message) {
-        this.welcomeMessage = message;
+        axios.get('api/test')
+          .then(res => {
+            this.welcomeMessage = res.data;
+          })
+          .catch(err => {
+            console.error(err);
+          });
     }
 }
 
