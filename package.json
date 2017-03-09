@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "rimraf ./dist && webpack --config webpack.config.production.js",
-    "preview": "http-server ./dist -p 1234 -c-1",
     "test": "echo \"Error: no test specified\" && exit 1",
     "version": "npm run build && git add -A dist",
     "postversion": "git push origin HEAD && git push --tags"
