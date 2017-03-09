@@ -20,12 +20,12 @@ app.disable('x-powered-by');
 
 switch (app.get('env')) {
   case 'development':
-    app.use(morgan('dev'));
-    break;
+  app.use(morgan('dev'));
+  break;
 
   case 'production':
-    app.use(morgan('short'));
-    break;
+  app.use(morgan('short'));
+  break;
 
   default:
 }
@@ -72,8 +72,8 @@ app.use((_req, res) => {
 app.use((err, _req, res, _next) => {
   if (err.status || (err.output && err.output.statusCode)) {
     return res
-      .status(err.status || err.output.statusCode)
-      .send(err);
+    .status(err.status || err.output.statusCode)
+    .send(err);
   }
 
   // eslint-disable-next-line no-console

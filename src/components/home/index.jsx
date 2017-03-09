@@ -11,7 +11,7 @@ export default class HomePage extends Component {
 	}
 
 	render() {
-        const { appStore } = this.props;
+		const { appStore } = this.props;
 
 		return (
 			<HomeView store={appStore} />

@@ -6,7 +6,7 @@ import App from './components/App'
 import AppStore from './stores/AppStore'
 
 const stores = {
-    appStore: new AppStore()
+  appStore: new AppStore()
 }
 
 ReactDOM.render(

@@ -17,9 +17,9 @@ export default class App extends Component {
 				<Provider {...this.stores}>
 					<div className="wrapper">
 						<Route
-						  exact
-						  path="/"
-						  render={(props) => <LazyRoute {...props} component={System.import('./home/index')} />}
+							exact
+							path="/"
+							render={(props) => <LazyRoute {...props} component={System.import('./home/index')} />}
 						/>
 					</div>
 				</Provider>
