@@ -1,23 +1,29 @@
-# React MobX React-Router 4 Boilerplate
+# React, MobX, React-Router 4, Webpack 2, Express, Knex, Bookshelf, PostgreSQL, Heroku Boilerplate
 
-### :tada: React, React-Router@next, MobX and Webpack 2.
-## [Demo](http://boilerplate.mhaagens.me)
+This is a personal React Boilerplate this I use to help me get my projects up and running quickly. It was forked from [mhaagens React Boilerplate](https://github.com/mhaagens/react-mobx-react-router4-boilerplate).
+I added Express, Knex, Bookshelf, PostgreSQL, Mocha and Chai, and a fully working server with example routes, migrations, seeds, models, and tests.
 
-Just run `npm install` and `npm start`, then go to localhost:3000 to start developing.
-To build, run `npm run build`, and to preview run `npm run preview`, then go
-to localhost:1234 for the minified production bundle.
+If you don't need a backend for your project, I suggest using mhaagens original starter.
 
-#### Async component loading
-Components are now loaded async with react-router-loader and the store is injected via MobX Provider. 
-If you've downloaded this boilerplate before remember to run `npm install` again.
+### Getting Started
 
-#### Read this if you've been using an earlier version of this boilerplate
-
-* 01/31/17 - Upgraded to React Router 4 Beta
-* 01/28/17 - Routes are now loaded through [Lazy-Route](https://github.com/mhaagens/lazy-route).
-
-### Todo
-
-- [X] Async loading of components
-- [X] Data fetching example
-- [X] Protected Routes
+- Fork and clone the repo.
+- Install dependancies with npm or yarn. (yarn is much faster!).
+  - `npm install` or `yarn install`
+- To create a local database for your project, run `initdb pg`.
+- Start a database server with `Postgres -D pg`.
+- Create two databases. These will be used for the example routes, models, and tests.
+  - `createdb example_dev`
+  - `createdb example_test`
+- I've created shortcut scripts for migrating and seeding the database. Run them.
+  - `npm run migrate:latest`
+  - `npm run migrate:latest:test`
+  - `npm run seed`
+  - `npm run seed:test`
+- To run the example test, run `npm test`.
+- To start the express server for development, run `npm run start:dev`.
+  - When in development, the project uses WebpackDevServer and hot reloading.
+  - The WebpackDevServer will be running on port 3000.
+  - The express server will be running on port 8000.
+  - `/api` routes will be proxied to the express server. All other routes will be served by the WebpackDevServer.
+- Go to `http://localhost:3000` to start developing.

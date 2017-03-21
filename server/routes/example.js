@@ -2,14 +2,12 @@
 
 const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
-const Product = require('../models/BiologicProduct');
-const product = new Product();
+const Example = require('../models/example');
 const boom = require('boom');
 
-const getAllProducts = function(req, res, next) {
-  Product.forge()
-    .query('orderBy', 'id', 'asc')
-    .fetchAll({ withRelated: ['category'] })
+const getExampleResponse = function(req, res, next) {
+  Example.forge()
+    .fetchAll()
     .then(response => {
       res.send(response);
     })
@@ -19,5 +17,5 @@ const getAllProducts = function(req, res, next) {
 };
 
 module.exports = {
-  getAllProducts
+  getExampleResponse
 }

@@ -3,12 +3,11 @@
 process.env.NODE_ENV = 'test';
 
 const { suite, test } = require('mocha');
-const app = require('../../server/server');
-const { knex } = require('../../orm');
+const app = require('../server/server');
+const { knex } = require('../orm');
 const supertest = require('supertest');
-const DataFunctions = require('./DataFunctions');
 
-suite('Categories Routes', () => {
+suite('Example Test', () => {
   before((done) => {
     knex.migrate.latest()
       .then(() => {
@@ -29,11 +28,21 @@ suite('Categories Routes', () => {
       });
   });
 
-  test('This is a sample test', (done) => {
+  test('This example test returns to correct data', (done) => {
     supertest(app)
-      .get('/api/test')
+      .get('/api/example')
       .set('Accept', 'application/json')
-      .expect(200, {})
+      .expect(res => {
+        for (const item of res.body) {
+          delete item.createdAt;
+          delete item.updatedAt;
+        }
+      })
+      .expect(200, [
+        { id: 1, name: 'example1' },
+        { id: 2, name: 'example2' },
+        { id: 3, name: 'example3' }
+      ])
       .expect('Content-Type', /json/)
       .end(done);
   });
