@@ -1,0 +1,11 @@
+.home {
+    text-align: center;
+
+    @include media('<991px') {
+        text-align: left;
+    }
+
+    h1 {
+        margin-top: 33vh;
+    }
+}
