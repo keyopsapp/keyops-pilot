@@ -30,7 +30,7 @@
     "ES7"
   ],
   "author": "Bryan Nrophy",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-core": "^6.23.1",
