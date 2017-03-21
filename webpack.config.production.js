@@ -16,25 +16,18 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
-        filename: 'static/js/[name].[chunkhash:8].js',
-        chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js'
+        filename: 'assets/[name].[hash].js',
+        chunkFilename: 'assets/[name].[chunkhash].js'
     },
     devtool: 'cheap-module-source-map',
     module: {
         loaders: [{
-            test: /\.jsx?$/,
+            test: /\.js|.jsx$/,
             include: path.join(__dirname, 'src'),
             loader: 'babel-loader',
             query: {
-                cacheDirectory: true,
-                "presets": [
-                    [ "es2015", { modules: false } ],
-                    "stage-0",
-                    "react"
-                ],
-                "plugins": [
-                    'transform-async-to-generator', 'transform-decorators-legacy'
-                ]
+                "presets": [[ "es2015", { modules: false } ], "stage-0", "react"],
+                "plugins": ['transform-async-to-generator', 'transform-decorators-legacy']
             }
         }, {
             test: /\.scss$/i,
@@ -48,7 +41,7 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+      extensions: ['*', '.js', '.jsx']
     },
     plugins: [
         new webpack.DefinePlugin({

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
-import HomeView from './HomeView';
+import ProductsView from './ProductsView';
 
 @inject("appStore") @observer
-export default class HomePage extends Component {
+export default class ProductsPage extends Component {
 	componentWillMount() {
 		this.props.appStore.getVialProductCategories();
 	}
 
 	render() {
 		return (
-			<HomeView {...this.props} />
+			<ProductsView {...this.props} />
 		);
 	}
 

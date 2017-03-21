@@ -1,1 +1,38 @@
-/* If your project large shared components that have to do with layout, such as a footer or top nav, those styles would live here. */
+.top-nav {
+  background: $purple;
+  color: white;
+  height: 65px;
+
+  .twelve.columns {
+    align-items: center;
+    background: $purple;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    height: 65px;
+    justify-content: flex-start;
+  }
+
+  .nav-links {
+      align-items: center;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      height: 65px;
+      justify-content: flex-start;
+
+      li {
+        margin-left: 25px;
+
+        a {
+          color: white;
+          font-size: type-scale(0);
+          text-decoration: none;
+        }
+      }
+  }
+
+  .user-info {
+    margin-left: auto;
+  }
+}

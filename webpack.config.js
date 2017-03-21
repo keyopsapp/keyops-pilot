@@ -9,7 +9,7 @@ module.exports = {
         "react-hot-loader/patch",
         "babel-polyfill",
         "whatwg-fetch",
-        "webpack-hot-middleware/client?path=http://localhost:8000/__webpack_hmr",
+        "webpack-dev-server/client?http://localhost:3000",
         "webpack/hot/only-dev-server",
         "./src/index"
     ],
@@ -22,8 +22,8 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
-                include: path.join(__dirname, "src"),
+                test: /\.js|.jsx$/,
+                exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
                     presets: [
@@ -32,14 +32,13 @@ module.exports = {
                         "react"
                     ],
                     plugins: [
-                        "react-hot-loader/babel",
                         "transform-async-to-generator",
                         "transform-decorators-legacy"
                     ]
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.scss|css$/,
                 loader: "style-loader!css-loader!postcss-loader!resolve-url-loader!sass-loader?sourceMap"
             },
             {
@@ -48,16 +47,21 @@ module.exports = {
                     "file-loader?hash=sha512&digest=hex&name=assets/[hash].[ext]",
                     "image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false"
                 ]
-            }
+            },
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx'],
+      extensions: ['*', '.js', '.jsx']
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({ hash: false, template: "./index.hbs" }),
+        new HtmlWebpackPlugin({
+          hash: false,
+          template: "./index.hbs"
+        }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/),
         new webpack.LoaderOptionsPlugin({
             test: /\.scss$/,
