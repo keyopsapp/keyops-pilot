@@ -39,9 +39,10 @@ suite('Example Test', () => {
         }
       })
       .expect(200, [
-        { id: 1, name: 'example1' },
-        { id: 2, name: 'example2' },
-        { id: 3, name: 'example3' }
+        { id: 1, name: 'John' },
+        { id: 2, name: 'Paul' },
+        { id: 3, name: 'George' },
+        { id: 4, name: 'Ringo' }
       ])
       .expect('Content-Type', /json/)
       .end(done);

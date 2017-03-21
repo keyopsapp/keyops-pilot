@@ -8,7 +8,12 @@ export default class HomeView extends Component {
 
 		return (
 			<div className="page home">
-				<h1>It's a Home Page, Yo!</h1>
+				<h1>These people are in this database.</h1>
+				{appStore.people.map(person => {
+					return (
+						<h3 key={person.id}>{person.name}</h3>
+					);
+				})}
 			</div>
 		);
 	}

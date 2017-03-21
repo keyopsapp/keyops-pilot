@@ -2,16 +2,16 @@ import { observable, action } from 'mobx'
 import axios from 'axios';
 
 class AppStore {
-  @observable welcomeMessage;
+  @observable people;
 
   constructor() {
-    this.welcomeMessage = '';
+    this.people = [];
   }
 
-  @action setWelcomeMessage(message) {
-    axios.get('api/test/2')
+  @action getThePeople(message) {
+    axios.get('api/example')
     .then(res => {
-      this.welcomeMessage = res.data.text;
+      this.people = res.data;
     })
     .catch(err => {
       console.error(err);

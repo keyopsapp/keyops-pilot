@@ -26,8 +26,8 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
-						  path="/products"
-						  render={(props) => <LazyRoute {...props} component={import('./products')} />}
+						  path="/people"
+						  render={(props) => <LazyRoute {...props} component={import('./people')} />}
 						/>
 					</div>
 				</Provider>

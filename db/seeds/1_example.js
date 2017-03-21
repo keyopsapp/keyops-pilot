@@ -8,9 +8,10 @@ exports.seed = function(knex) {
     .then(() => {
       return knex('example')
         .insert([
-          { name: 'example1' },
-          { name: 'example2' },
-          { name: 'example3' }
+          { name: 'John' },
+          { name: 'Paul' },
+          { name: 'George' },
+          { name: 'Ringo' }
         ])
         .returning('*')
     })

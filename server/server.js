@@ -14,7 +14,10 @@ const morgan = require('morgan');
 
 const app = express();
 
-const test = require('./routes/test');
+const compression = require('compression');
+app.use(compression());
+
+const routes = require('./routes');
 
 app.disable('x-powered-by');
 
@@ -30,21 +33,27 @@ switch (app.get('env')) {
   default:
 }
 
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('../webpack.config');
+if (process.env.NODE_ENV === 'development') {
+  console.log('NODE_ENV is development *********** Using Webpack Middleware');
+  console.log('***********************************************************');
+  var devPort = 3000;
+  var webpack = require('webpack');
+  var WebpackDevServer = require('webpack-dev-server');
+  var config = require('../webpack.config');
 
-const compiler = webpack(config);
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
-}));
-
-app.use(require('webpack-hot-middleware')(compiler));
-
-app.use(express.static(path.join(__dirname, 'public')));
+  new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
+    hot: true,
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:8000'
+    }
+  }).listen(devPort, 'localhost', function (err, result) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+}
 
 // CSRF protection
 app.use('/api', (req, res, next) => {
@@ -58,10 +67,11 @@ app.use('/api', (req, res, next) => {
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use('/api', test);
+app.use('/api', routes);
+app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 
-app.use((_req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/*', (_req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.use((_req, res) => {
@@ -82,9 +92,11 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(port, () => {
-  if (process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
-    console.log('LISTENING ON PORT', port, 'YOU ARE...');
+    console.log('"TAKE THESE API ROUTES OVER TO PORT', port, 'WILL YA? I WANT \'EM CLEANED UP BEFORE DINNER."');
+    console.log('***********************************************************');
+    console.log('BUT I WAS GOING INTO PORT', devPort, 'TO PICK UP SOME POWER CONVERTERS!');
   }
 });
 
