@@ -4,12 +4,12 @@ import { observer } from 'mobx-react'
 @observer
 export default class HomeView extends Component {
 	render() {
-		const { appStore } = this.props
+		const { exampleStore } = this.props
 
 		return (
 			<div className="page home">
 				<h1>These people are in the database.</h1>
-				{appStore.people.map(person => {
+				{exampleStore.people.map(person => {
 					return (
 						<h3 key={person.id}>{person.name}</h3>
 					);

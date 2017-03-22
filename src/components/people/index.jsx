@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react'
 import PeopleView from './PeopleView';
+import * as actions from '../../actions/exampleActions';
 
-@inject("appStore") @observer
+@inject("exampleStore") @observer
 export default class PeoplePage extends Component {
 	componentWillMount() {
-		this.props.appStore.getThePeople();
+		actions.getPeople();
 	}
 
 	render() {
@@ -13,5 +14,4 @@ export default class PeoplePage extends Component {
 			<PeopleView {...this.props} />
 		);
 	}
-
 }

@@ -3,10 +3,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './components/App'
-import AppStore from './stores/AppStore'
+import exampleStore from './stores/ExampleStore'
 
 const stores = {
-  appStore: new AppStore()
+  exampleStore
 }
 
 ReactDOM.render(
