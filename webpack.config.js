@@ -3,6 +3,7 @@ var webpack = require("webpack");
 var precss = require("precss");
 var autoprefixer = require("autoprefixer");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -16,7 +17,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, "dist"),
         publicPath: "/",
-        filename: "app.[hash].js"
+        filename: "static/js/app.[hash].js"
     },
     devtool: "eval",
     module: {
@@ -44,12 +45,18 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    "file-loader?hash=sha512&digest=hex&name=assets/[hash].[ext]",
+                    "file-loader?hash=sha512&digest=hex&name=assets/images/[hash].[ext]",
                     "image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false"
                 ]
             },
-            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-            { test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+            {
+              test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "url-loader?limit=10000&mimetype=application/font-woff"
+            },
+            {
+              test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "file-loader"
+            }
         ]
     },
     resolve: {
@@ -58,6 +65,7 @@ module.exports = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin("assets/styles/styles.css"),
         new HtmlWebpackPlugin({
           hash: false,
           template: "./index.hbs"

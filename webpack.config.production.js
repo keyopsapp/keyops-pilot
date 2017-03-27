@@ -16,29 +16,41 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
-        filename: 'assets/[name].[hash].js',
-        chunkFilename: 'assets/[name].[chunkhash].js'
+        filename: 'static/js/[name].[hash].js',
+        chunkFilename: 'static/js/[name].[chunkhash].js'
     },
     devtool: 'cheap-module-source-map',
     module: {
-        loaders: [{
-            test: /\.js|.jsx$/,
-            include: path.join(__dirname, 'src'),
-            loader: 'babel-loader',
-            query: {
-                "presets": [[ "es2015", { modules: false } ], "stage-0", "react"],
-                "plugins": ['transform-async-to-generator', 'transform-decorators-legacy']
-            }
-        }, {
-            test: /\.scss$/i,
-            loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']),
-        }, {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            loaders: [
-                'file-loader?hash=sha512&digest=hex&name=assets/[hash].[ext]',
-                'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-            ]
-        }]
+      loaders: [
+        {
+          test: /\.js|.jsx$/,
+          include: path.join(__dirname, 'src'),
+          loader: 'babel-loader',
+          query: {
+            "presets": [[ "es2015", { modules: false } ], "stage-0", "react"],
+            "plugins": ['transform-async-to-generator', 'transform-decorators-legacy']
+          }
+        },
+        {
+          test: /\.scss$/i,
+          loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']),
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file-loader?hash=sha512&digest=hex&name=assets/images/[hash].[ext]',
+            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
+        },
+        {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        },
+        {
+          test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "file-loader"
+        }
+      ]
     },
     resolve: {
       extensions: ['*', '.js', '.jsx']
@@ -73,7 +85,7 @@ module.exports = {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin("assets/styles.css"),
+        new ExtractTextPlugin("assets/styles/styles.css"),
         new HtmlWebpackPlugin({
             hash: false,
             template: './index.hbs'
