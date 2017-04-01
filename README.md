@@ -5,7 +5,7 @@ I added Express, Knex, Bookshelf, PostgreSQL, Mocha and Chai, and a fully workin
 
 If you don't need a backend for your project, I suggest using mhaagens original starter.
 
-### Getting Started
+### Getting Started 
 
 - Fork and clone the repo.
 - Install dependancies with npm or yarn. (yarn is much faster!).
