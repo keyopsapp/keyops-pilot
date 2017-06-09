@@ -15,6 +15,8 @@
     "migrate:rollback:test": "env NODE_ENV=test knex migrate:rollback",
     "migrate:rollback": "knex migrate:rollback",
     "nf": "nf start",
+    "resetdb": "npm run migrate:rollback && npm run migrate:latest && npm run seed",
+    "resetdb:test": "npm run migrate:rollback:test && npm run migrate:latest:test && npm run seed:test",
     "seed:test": "env NODE_ENV=test knex seed:run",
     "seed": "knex seed:run",
     "test:server": "mocha test/**/*.test.js --env test",

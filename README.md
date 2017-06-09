@@ -5,21 +5,19 @@ I added Express, Knex, Bookshelf, PostgreSQL, Mocha and Chai, and a fully workin
 
 If you don't need a backend for your project, I suggest using mhaagens original starter.
 
-### Getting Started 
+### Getting Started
 
 - Fork and clone the repo.
 - Install dependancies with npm or yarn. (yarn is much faster!).
   - `npm install` or `yarn install`
 - To create a local database for your project, run `initdb pg`.
-- Start a database server with `Postgres -D pg`.
+- Start a database server by running `Postgres -D pg` from the project root on the command line.
 - Create two databases. These will be used for the example routes, models, and tests.
   - `createdb example_dev`
   - `createdb example_test`
 - I've created shortcut scripts for migrating and seeding the database. Run them.
-  - `npm run migrate:latest`
-  - `npm run migrate:latest:test`
-  - `npm run seed`
-  - `npm run seed:test`
+  - `npm run resetdb`
+  - `npm run resetdb:test`
 - To run the example test, run `npm test`.
 - To start the express server for development, run `npm run start:dev`.
   - When in development, the project uses WebpackDevServer and hot reloading.
