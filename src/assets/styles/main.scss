@@ -3,9 +3,12 @@
 
 // Abstracts
 @import 'abstracts/aspectRatio';
+@import 'abstracts/depth';
 @import 'abstracts/functions';
-@import 'abstracts/includeMedia';
+@import 'abstracts/mediaMixins';
+@import 'abstracts/slide';
 @import 'abstracts/variables';
+@import 'abstracts/zIndex';
 
 // Base
 @import 'base/reset';
@@ -14,11 +17,12 @@
 @import 'base/typography';
 
 // Components
+@import 'components/dialogBox';
 @import 'components/page';
 
 // Layout
 @import 'layout/footer';
-@import '/layout/topNav';
+@import 'layout/topNav';
 
 // Pages
 @import 'pages/home';

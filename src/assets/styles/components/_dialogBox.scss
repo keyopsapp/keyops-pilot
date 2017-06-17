@@ -1,0 +1,19 @@
+.sliding-dialog-box {
+  background: $dark;
+  color: $light;
+  display: flex;
+  padding: 10px 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  @include slide(up, 250ms, 100%);
+
+  &.is-visible {
+    @include slide(off, 125ms);
+  }
+
+  p {
+    font-size: type-scale(-1);
+    margin-right: 15px;
+  }
+}

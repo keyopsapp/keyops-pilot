@@ -8,21 +8,21 @@ html {
 }
 
 body {
-	color: $dark-grey;
+	color: $dark;
 	line-height: 1.333;
 }
 
-h1 {font-size: type-scale(4)}
+h1 {font-size: type-scale(5)}
 
-h2 {font-size: type-scale(3)}
+h2 {font-size: type-scale(4)}
 
-h3 {font-size: type-scale(2)}
+h3 {font-size: type-scale(3)}
 
-h4 {font-size: type-scale(1)}
+h4 {font-size: type-scale(2)}
 
-h5 {font-size: type-scale(-1)}
+h5 {font-size: type-scale(1)}
 
-h6 {font-size: type-scale(-2)}
+h6 {font-size: type-scale(0)}
 
 p {font-size: type-scale(0)}
 

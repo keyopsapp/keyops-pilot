@@ -1,7 +1,7 @@
 .home {
     text-align: center;
 
-    @include media('<991px') {
+    @include for-phone-only() {
         text-align: left;
     }
 

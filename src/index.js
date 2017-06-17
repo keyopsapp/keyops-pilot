@@ -1,4 +1,4 @@
-require('./styles/main.scss')
+require('./assets/styles/main.scss')
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
