@@ -3,6 +3,10 @@ import { observer } from 'mobx-react'
 
 @observer
 export default class HomeView extends Component {
+	componentDidMount() {
+		this.props.actions2.getPeople();
+	}
+
 	render() {
 		const { exampleStore } = this.props
 

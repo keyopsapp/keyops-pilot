@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
+import StoreInjector from '../middleware/StoreInjector';
+import ActionsProvider from '../middleware/ActionsProvider';
 import PeopleView from './PeopleView';
 import * as actions from '../../actions/exampleActions';
 
-@inject("exampleStore") @observer
+@StoreInjector
+@ActionsProvider
+@observer
 export default class PeoplePage extends Component {
-	componentWillMount() {
-		actions.getPeople();
-	}
-
 	render() {
 		return (
 			<PeopleView {...this.props} />
