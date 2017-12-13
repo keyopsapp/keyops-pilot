@@ -3,7 +3,7 @@ export default class ExampleApi {
         this.API = apiCore;
     }
 
-    getExample() {
+    getPeople() {
         return this.API.get(ExampleApi.examplePath);
     }
 }
