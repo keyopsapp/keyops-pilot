@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
 import App from './components/App'
 import exampleStore from './stores/ExampleStore'
+import surveyStore from './stores/SurveyStore'
 import 'typeface-roboto'
 // import 'material-ui-icons'
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
@@ -19,7 +20,8 @@ const theme = createMuiTheme({
 });
 
 const stores = {
-    exampleStore
+    exampleStore,
+    surveyStore
 }
 
 ReactDOM.render(

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import * as exampleActions from '../../actions/exampleActions';
+import * as surveyActions from '../../actions/surveyActions';
 
 const actions = {
-	...exampleActions
+	...exampleActions,
+    ...surveyActions
 };
 
 export default function ActionsProvider(Component) {

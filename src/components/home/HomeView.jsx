@@ -52,7 +52,7 @@ const styles = theme => ({
     mainTitle: {
         // marginBottom: 16,
         // fontSize: 14,
-        flex:1,
+        flex: 1,
         color: theme.palette.text.secondary,
     },
     pos: {
@@ -71,14 +71,16 @@ class HomeView extends Component {
 
     componentDidMount() {
         this.props.actions2.getPeople();
+        this.props.actions2.getSurveys();
     }
 
 
     render() {
-        const {appStore, exampleStore, classes} = this.props
+        const {appStore, surveyStore, classes} = this.props
 
 
-        const cards = exampleStore.people.map(person => {
+        const cards = surveyStore.surveys.map(person => {
+
             return (
 
                 <Card key={person.id} className={classes.card}>
@@ -87,15 +89,13 @@ class HomeView extends Component {
                         <div>
                             {/*<Typography className={classes.title}>Created: 12/11/2017</Typography>*/}
                             <Typography type="headline" component="h2">
-                                {person.name} Survey
+                                {person.name}
                             </Typography>
                             <Typography className={classes.pos}>Created: 12/11/2017</Typography>
                         </div>
-
                         <div className={classes.info}>
-
                             <Typography type="subheading" component="h3">
-                                Responses: 3/10 (30%)
+                                Responses: {person.data.count}/10 (30%)
                             </Typography>
 
                         </div>
@@ -107,7 +107,8 @@ class HomeView extends Component {
                             Start
                             <Icon className={classes.rightIcon}>play_arrow</Icon>
                         </Button>
-                        <Button className={classes.button}>
+                        <Button className={classes.button}
+                                onClick={() => this.props.actions2.updateSurvey(person.id, {...person, data:{count: person.data.count+1}})}>
                             Edit
                             <Icon className={classes.rightIcon}>edit</Icon>
                         </Button>
@@ -124,8 +125,6 @@ class HomeView extends Component {
             );
         })
 
-        console.log('asdasd')
-
 
         return (
 
@@ -139,18 +138,15 @@ class HomeView extends Component {
                     <Grid item xs={8}>
 
                         <Toolbar className={classes.toolbar}>
-                            <Typography type="title" className={classes.mainTitle} >My Surveys</Typography>
-                            <Button fab color="primary" aria-label="add">
+                            <Typography type="title" className={classes.mainTitle}>My Surveys</Typography>
+                            <Button fab color="primary" aria-label="add"
+                                    onClick={() => this.props.actions2.createSurvey()}>
                                 <Icon>add</Icon>
                             </Button>
 
                         </Toolbar>
                         <div className="cards-list">
                             {cards}
-                            {cards}
-                            {cards}
-                            {cards}
-
                         </div>
 
                     </Grid>
