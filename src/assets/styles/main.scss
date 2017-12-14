@@ -1,31 +1,78 @@
-// Vendors
-@import 'vendors/skeleton';
+//// Vendors
+//@import 'vendors/skeleton';
+//
+//// Abstracts
+//@import 'abstracts/aspectRatio';
+//@import 'abstracts/depth';
+//@import 'abstracts/functions';
+//@import 'abstracts/mediaMixins';
+//@import 'abstracts/slide';
+//@import 'abstracts/variables';
+//@import 'abstracts/zIndex';
+//
+//// Base
+//@import 'base/reset';
+//@import 'base/colors';
+//@import 'base/base';
+//@import 'base/typography';
+//
+//// Components
+//@import 'components/dialogBox';
+//@import 'components/page';
+//
+//// Layout
+//@import 'layout/footer';
+//@import 'layout/topNav';
+//
+//// Pages
+//@import 'pages/home';
+//
+//// Themes
+//@import 'themes/default';
 
-// Abstracts
-@import 'abstracts/aspectRatio';
-@import 'abstracts/depth';
-@import 'abstracts/functions';
-@import 'abstracts/mediaMixins';
-@import 'abstracts/slide';
-@import 'abstracts/variables';
-@import 'abstracts/zIndex';
 
-// Base
-@import 'base/reset';
-@import 'base/colors';
-@import 'base/base';
-@import 'base/typography';
 
-// Components
-@import 'components/dialogBox';
-@import 'components/page';
 
-// Layout
-@import 'layout/footer';
-@import 'layout/topNav';
+.app-contnet {
+  background-color: #f6f6f6;
+  padding-top: 80px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
-// Pages
-@import 'pages/home';
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(~material-design-icons/iconFont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(~material-design-icons/iconFont/MaterialIcons-Regular.woff2) format('woff2'),
+  url(~material-design-icons/iconFont/MaterialIcons-Regular.woff) format('woff'),
+  url(~material-design-icons/iconFont/MaterialIcons-Regular.ttf) format('truetype');
+}
 
-// Themes
-@import 'themes/default';
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
