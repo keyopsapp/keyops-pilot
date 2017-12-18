@@ -1,4 +1,6 @@
-require('./assets/styles/main.scss')
+import 'bootstrap/dist/css/bootstrap.css';
+
+require('./assets/styles/main.scss');
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
@@ -8,21 +10,21 @@ import surveyStore from './stores/SurveyStore'
 import 'typeface-roboto'
 // import 'material-ui-icons'
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
-import {purple, green, red} from 'material-ui/colors'
+import {purple, green, red, gray} from 'material-ui/colors'
 
 const theme = createMuiTheme({
-    palette: {
-        primary: purple, // Purple and green play nicely together.
-        secondary: green,
-        error: red,
-    }
+    // palette: {
+    //     primary: purple, // Purple and green play nicely together.
+    //     secondary: green,
+    //     error: red,
+    // }
 
 });
 
 const stores = {
     exampleStore,
     surveyStore
-}
+};
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>

@@ -5,6 +5,8 @@ const router = express.Router(); // eslint-disable-line new-cap
 const Survey = require('../models/survey');
 const survey = new Survey();
 const boom = require('boom');
+const mailer = require('../modules/mailer');
+console.log(mailer)
 
 const getAllSurveys = function (req, res, next) {
     Survey.forge()
@@ -52,10 +54,10 @@ const createSurvey = function (req, res, next) {
 
 const updateSurvey = function (req, res, next) {
     const {id} = req.params;
-    const {name, data} = req.body;
-
+    const {name, data, status} = req.body;
+    // console.log('wow1')
     // console.log(req.body)
-    const nextSurvey = {name, data};
+    const nextSurvey = {name, data, status};
 
     console.log(nextSurvey)
 
@@ -63,11 +65,16 @@ const updateSurvey = function (req, res, next) {
         .where('id', id)
         .fetch()
         .then(response => {
+
+
             return response.save(survey.format(nextSurvey));
         })
         .then(response => {
             // console.log(JSON.stringify(response.data))
             // console.log(response.attributes)
+
+
+
             res.send(survey.parse(response.attributes));
 
         })
@@ -79,6 +86,34 @@ const updateSurvey = function (req, res, next) {
             return next(err);
         });
 };
+
+const startSurvey = function (req, res, next) {
+    const {id} = req.params;
+    // const {name, data, status} = req.body;
+    const nextSurvey = {status:'running'};
+
+    console.log(nextSurvey)
+
+    Survey.forge()
+        .where('id', id)
+        .fetch()
+        .then(response => {
+            return response.save(survey.format(nextSurvey));
+        })
+        .then(response => {
+            // console.log(JSON.stringify(response))
+            mailer.send('contact@crm4you.me', response.attributes);
+            res.send(survey.parse(response.attributes));
+        })
+        .catch(err => {
+            if (err.name === 'ValidationError') {
+                return next(boom.create(400, err.message));
+            }
+
+            return next(err);
+        });
+};
+
 
 const deleteSurvey = function (req, res, next) {
     const {id} = req.params;
@@ -99,7 +134,8 @@ module.exports = {
     getSurveyById,
     createSurvey,
     updateSurvey,
-    deleteSurvey
+    deleteSurvey,
+    startSurvey
 }
 
 

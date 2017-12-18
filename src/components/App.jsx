@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Provider, observer} from 'mobx-react'
 import LazyRoute from 'lazy-route'
 
@@ -8,7 +8,7 @@ import Navigation from './layout/Navigation';
 @observer
 export default class App extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.stores = this.props.stores
     }
 
@@ -27,8 +27,13 @@ export default class App extends Component {
                             />
                             <Route
                                 exact
-                                path="/people"
-                                render={(props) => <LazyRoute {...props} component={import('./people')}/>}
+                                path="/edit/:surveyId"
+                                render={(props) => <LazyRoute {...props} component={import('./editor')}/>}
+                            />
+                            <Route
+                                exact
+                                path="/display/:surveyId"
+                                render={(props) => <LazyRoute {...props} component={import('./display')}/>}
                             />
                         </div>
                     </div>

@@ -24,4 +24,7 @@ router.route('/survey/:id')
     .put(surveyRoutes.updateSurvey)
     .delete(surveyRoutes.deleteSurvey)
 
+router.route('/survey/:id/start')
+    .get(surveyRoutes.startSurvey)
+
 module.exports = router;

@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {Button, Grid, Paper, Typography, Toolbar} from 'material-ui'
+
+import {Button, Grid, Typography, Toolbar} from 'material-ui'
 import Card, {CardContent, CardActions} from 'material-ui/Card';
 import Icon from 'material-ui/Icon';
+import {withRouter} from 'react-router-dom';
 
+import {grey, green, yellow} from 'material-ui/colors'
 
 import {withStyles} from 'material-ui/styles';
 
@@ -21,7 +24,8 @@ const styles = theme => ({
     },
     card: {
         minWidth: 275,
-        display: 'flex'
+        display: 'flex',
+        position: 'relative'
     },
 
     button: {
@@ -62,6 +66,22 @@ const styles = theme => ({
     rightIcon: {
         marginLeft: theme.spacing.unit,
     },
+    statusBar: {
+        '&.draft': {
+            backgroundColor: grey[500]
+        },
+        '&.completed': {
+            backgroundColor: green['A200']
+        },
+        '&.running': {
+            backgroundColor: yellow[500]
+        },
+        // position: 'absolute',
+        // backgroundColor: 'red',
+        width: 5,
+        // height: 5
+    }
+
 });
 
 
@@ -70,32 +90,60 @@ class HomeView extends Component {
 
 
     componentDidMount() {
-        this.props.actions2.getPeople();
+
         this.props.actions2.getSurveys();
     }
 
 
+    createSurvey() {
+        const {actions2, history} = this.props;
+
+        actions2.createSurvey()
+            .then(survey => history.push('/edit/' + survey.id))
+    }
+
+    editSurvey(id) {
+        const {history} = this.props;
+        history.push(`/edit/${id}`);
+    }
+
+
+    startSurvey(survey) {
+        const {actions2} = this.props;
+
+        // const updated = {...survey, status: 'running'};
+        // console.log(updated)
+        actions2.startSurvey(survey.id);
+    }
+
+
     render() {
-        const {appStore, surveyStore, classes} = this.props
+        const {surveyStore, classes} = this.props;
 
 
-        const cards = surveyStore.surveys.map(person => {
+        const cards = surveyStore.surveys.map(survey => {
 
             return (
 
-                <Card key={person.id} className={classes.card}>
+
+                <Card key={survey.id} className={classes.card}>
+                    <div className={`${classes.statusBar} ${survey.status}`}>
+
+                    </div>
                     <CardContent className={classes.cardContnet}>
 
+
                         <div>
+
                             {/*<Typography className={classes.title}>Created: 12/11/2017</Typography>*/}
                             <Typography type="headline" component="h2">
-                                {person.name}
+                                {survey.name}
                             </Typography>
                             <Typography className={classes.pos}>Created: 12/11/2017</Typography>
                         </div>
                         <div className={classes.info}>
                             <Typography type="subheading" component="h3">
-                                Responses: {person.data.count}/10 (30%)
+                                Responses: {survey.data.count}/10 (30%)
                             </Typography>
 
                         </div>
@@ -103,27 +151,36 @@ class HomeView extends Component {
                     </CardContent>
 
                     <CardActions className={classes.cardActions}>
-                        <Button className={classes.button}>
+                        <Button className={classes.button}
+                                disabled={survey.status !== 'draft'}
+                                onClick={() => this.startSurvey(survey)}>
                             Start
                             <Icon className={classes.rightIcon}>play_arrow</Icon>
                         </Button>
                         <Button className={classes.button}
-                                onClick={() => this.props.actions2.updateSurvey(person.id, {...person, data:{count: person.data.count+1}})}>
+                                disabled={survey.status !== 'draft'}
+                                onClick={() => this.editSurvey(survey.id)}>
                             Edit
                             <Icon className={classes.rightIcon}>edit</Icon>
                         </Button>
-                        <Button className={classes.button}>
+                        <Button className={classes.button}
+                                disabled={survey.status === 'draft'}
+
+                        >
                             View
                             <Icon className={classes.rightIcon}>equalizer</Icon>
                         </Button>
                     </CardActions>
+
                 </Card>
 
 
 
 
             );
-        })
+
+
+        });
 
 
         return (
@@ -140,7 +197,7 @@ class HomeView extends Component {
                         <Toolbar className={classes.toolbar}>
                             <Typography type="title" className={classes.mainTitle}>My Surveys</Typography>
                             <Button fab color="primary" aria-label="add"
-                                    onClick={() => this.props.actions2.createSurvey()}>
+                                    onClick={this.createSurvey.bind(this)}>
                                 <Icon>add</Icon>
                             </Button>
 
@@ -157,4 +214,4 @@ class HomeView extends Component {
 }
 
 
-export default withStyles(styles)(HomeView);
+export default withStyles(styles)(withRouter(HomeView));
