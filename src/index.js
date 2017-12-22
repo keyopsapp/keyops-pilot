@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
+
 require('./assets/styles/main.scss');
 
 import React from 'react'
@@ -83,3 +83,5 @@ if (module.hot) {
         );
     });
 }
+
+require('bootstrap/dist/css/bootstrap.css');
