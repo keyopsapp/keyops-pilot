@@ -1,36 +1,4 @@
-//// Vendors
-//@import 'vendors/skeleton';
-//
-//// Abstracts
-//@import 'abstracts/aspectRatio';
-//@import 'abstracts/depth';
-//@import 'abstracts/functions';
-//@import 'abstracts/mediaMixins';
-//@import 'abstracts/slide';
-//@import 'abstracts/variables';
-//@import 'abstracts/zIndex';
-//
-//// Base
-//@import 'base/reset';
-//@import 'base/colors';
-//@import 'base/base';
-//@import 'base/typography';
-//
-//// Components
-//@import 'components/dialogBox';
-//@import 'components/page';
-//
-//// Layout
-//@import 'layout/footer';
-//@import 'layout/topNav';
-//
-//// Pages
-//@import 'pages/home';
-//
-//// Themes
-//@import 'themes/default';
-//@import 'bootstrap/dist/css/bootstrap.css';
-//@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+
 
 html {
   font-size: inherit!important;
@@ -55,12 +23,12 @@ a {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(../../../node_modules/material-design-icons/iconFont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(/node_modules/material-design-icons/iconFont/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
   local('MaterialIcons-Regular'),
-  url(../../../node_modules/material-design-icons/iconFont/MaterialIcons-Regular.woff2) format('woff2'),
-  url(../../../node_modules/material-design-icons/iconFont/MaterialIcons-Regular.woff) format('woff'),
-  url(../../../node_modules/material-design-icons/iconFont/MaterialIcons-Regular.ttf) format('truetype');
+  url(/node_modules/material-design-icons/iconFont/MaterialIcons-Regular.woff2) format('woff2'),
+  url(/node_modules/material-design-icons/iconFont/MaterialIcons-Regular.woff) format('woff'),
+  url(/node_modules/material-design-icons/iconFont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
