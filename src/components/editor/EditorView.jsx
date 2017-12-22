@@ -5,6 +5,7 @@ import SurveyEditor from './SurveyEditor';
 // import './App.css';
 import {observer} from 'mobx-react'
 import EditTitle from "../common/EditTitle";
+import {Card} from "material-ui";
 @observer
 class Editor extends Component {
 
@@ -49,7 +50,7 @@ class Editor extends Component {
                     <EditTitle value={surveyStore.survey.Name} onChange={this.changeSurveyName}/>
                 </div>
                 <div className="surveyjs">
-
+                    <Card>asdd</Card>
                     <SurveyEditor surveyId={params.surveyId} save={this.savesurvey.bind(this)}/>
                 </div>
 

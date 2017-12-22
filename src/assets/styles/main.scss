@@ -34,7 +34,11 @@
 
 //@import '../../../node_modules/material-design-icons/
 
-//@import './bootstrap.css';
+//@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+$icon-font-path: '../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../../../node_modules/surveyjs-editor/surveyeditor.css';
 
 html {
   font-size: inherit!important;
@@ -112,5 +116,3 @@ a {
 
 }
 
-$icon-font-path: '../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
-@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
