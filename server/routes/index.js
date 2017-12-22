@@ -27,4 +27,7 @@ router.route('/survey/:id')
 router.route('/survey/:id/start')
     .get(surveyRoutes.startSurvey)
 
+router.route('/survey/:id/results')
+    .get(surveyRoutes.getSurveyResults)
+
 module.exports = router;

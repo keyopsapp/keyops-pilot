@@ -6,62 +6,93 @@ import SurveyDisplay from './SurveyDisplay';
 // import './App.css';
 import {observer} from 'mobx-react'
 import 'bootstrap/dist/css/bootstrap.css';
+import {Grid, Paper, withStyles} from "material-ui";
 
+const styles = {
+    page:{
+        padding:20,
+        height:'100%'
+    }
+}
 @observer
 class DisplayView extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
 
         const {match: {params}} = this.props;
         // this.props.actions2.getSurveys();
 
-        this.props.actions2.getSurveyById(params.surveyId);
+        // this.props.actions2.getSurveyById(params.surveyId);
+
+        // const {surveyStore, match: {params}} = this.props;
+
+
+        // const pub = surveyStore.survey.publishedinfo ? surveyStore.survey.publishedinfo : {};
+
+
+        const data = {
+            // firstPageIsStarted: true,
+            sendResultOnPageNext: true,
+            goNextPageAutomatic: true,
+            // cookieName: 'keyops_participant',
+            surveyId: params.surveyId,
+            surveyPostId: params.postId,
+            clientId: params.clientId,
+            // startSurveyText: "Start",
+
+
+        };
+
+
+        this.model = new Survey.Model(data);
+        // model.firstPageIsStarted = true;
     }
 
 
     render() {
 
-        const {surveyStore} = this.props;
+        const {classes} = this.props;
 
 
-        const pages = surveyStore.survey.data ? surveyStore.survey.data.pages : {};
+        // const pub = surveyStore.survey.publishedinfo ? surveyStore.survey.publishedinfo : {};
 
-        const text = 'Please click start to begin the survey.';
-        const data = {
-            firstPageIsStarted: true,
-            goNextPageAutomatic: true,
-            cookieName: 'keyops_participant',
-            // startSurveyText: "Start",
-
-            pages: [{
-                "name": "page1",
-                "elements": [{"type": "html", "name": "question1", "html": text}]
-            }, ...pages]
-        };
-
-
-        const model = new Survey.Model(data);
+        // const data = {
+        //     // firstPageIsStarted: true,
+        //     // sendResultOnPageNext:true,
+        //     // goNextPageAutomatic: true,
+        //     // cookieName: 'keyops_participant',
+        //     surveyId: params.surveyId,
+        //     surveyPostId: params.postId,
+        //     clientId: params.clientId,
+        //     // startSurveyText: "Start",
+        //
+        //
+        // };
+        //
+        //
+        // const model = new Survey.Model(data);
         // model.firstPageIsStarted = true;
         // model.startSurveyText = 'Start Now';
 
 
         // console.log(surveyStore.survey.data)
 
+        const survey = this.model ? <Survey.Survey model={this.model}/> : null;
+
         return (
-            <div className="App">
-                <div className="App-header">
-                    {/*<img src={logo} className="App-logo" alt="logo" />*/}
-                    <h2>{surveyStore.survey.name}</h2>
-                </div>
-                <div className="surveyjs">
-
-                    <Survey.Survey model={model}/>
-
-                </div>
-
-            </div>
+            <Grid container
+                  spacing={24}
+                  justify="center">
+                <Grid item xs={6}>
+                    <Paper className={classes.page}>
+                        {/*<div className="surveyjs">*/}
+                            {survey}
+                        {/*</div>*/}
+                    </Paper>
+                </Grid>
+            </Grid>
         );
     }
 }
 
-export default DisplayView;
+export default withStyles(styles)(DisplayView);

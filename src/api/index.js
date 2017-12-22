@@ -1,12 +1,12 @@
 import ApiCore from './ApiCore';
 import ExampleApi from './ExampleApi';
-import SurveyApi from './SurveyApi';
+import DxSurveyApi from './DxSurveyApi';
 
 class API {
     constructor() {
         this.apiCore = new ApiCore();
         this.exampleApi = new ExampleApi(this.apiCore);
-        this.surveyApi = new SurveyApi(this.apiCore);
+        this.surveyApi = new DxSurveyApi(this.apiCore);
     }
 }
 

@@ -1,9 +1,15 @@
 import {observable, action} from 'mobx'
+// import chain from 'lodash/chain';
+// import compact from 'lodash/compact';
+// import reduce from 'lodash/reduce';
 
 class SurveyStore {
     @observable surveys = [];
     // @observable survey;
     @observable.shallow survey = {};
+    @observable results = {data: []};
+
+    // @observable totalResults;
 
 
     constructor() {
@@ -16,6 +22,11 @@ class SurveyStore {
         // this.survey = {};
         // this.survey.data = @observable.ref(null)
 
+    }
+
+    @action
+    restResults() {
+        this.results = {data: []};
     }
 
     @action
@@ -37,17 +48,31 @@ class SurveyStore {
 
     @action
     updateSurvey(nextSurvey) {
-        this.surveys = this.surveys.map(survey => {
-            if (survey.id === nextSurvey.id) {
-                return nextSurvey;
+        // this.surveys = this.surveys.map(survey => {
+        //     if (survey.id === nextSurvey.id) {
+        //         return nextSurvey;
+        //     }
+        //
+        //     return survey;
+        // });
+        //
+        // if (this.survey.id === nextSurvey.id) {
+        //     this.survey = nextSurvey;
+        // }
+    }
+
+    @action
+    startSurvey(id) {
+        this.surveys.forEach(survey => {
+            if (survey.Id === id) {
+                survey.IsPublished = true;
             }
 
-            return survey;
         });
 
-        if (this.survey.id === nextSurvey.id) {
-            this.survey = nextSurvey;
-        }
+        // if (this.survey.id === id) {
+        //     this.survey = nextSurvey;
+        // }
     }
 
     @action
@@ -60,6 +85,26 @@ class SurveyStore {
             this.survey = {};
         }
     }
+
+    @action
+    getResults(results) {
+
+        this.results = results;
+        // this.totalResults = total;
+
+    }
+
+
+    @action
+    changeSurveyName(id, newName) {
+        this.surveys.forEach(survey => {
+            if (survey.Id === id) {
+                survey.Name = newName;
+            }
+
+        });
+    }
+
 }
 
 const surveyStore = new SurveyStore();

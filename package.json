@@ -68,6 +68,7 @@
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
     "bookshelf-camelcase": "^1.1.4",
+    "chart.js": "^2.7.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
@@ -79,6 +80,7 @@
     "joi": "^10.2.2",
     "knex": "^0.12.8",
     "lazy-route": "^1.0.7",
+    "lodash": "^4.17.4",
     "material-design-icons": "^3.0.1",
     "material-ui": "^1.0.0-beta.23",
     "mobx": "^3.4.1",
@@ -90,8 +92,10 @@
     "nodemailer": "^4.4.1",
     "package": "^1.0.1",
     "pg": "^6.1.5",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "react": "^15.6.2",
+    "react-chartjs": "git://github.com/reactjs/react-chartjs.git#chartjs-v2",
+    "react-chartjs-2": "^2.6.4",
+    "react-dom": "^15.6.2",
     "react-router-dom": "^4.0.0",
     "survey-react": "^0.98.3",
     "surveyjs-editor": "^0.98.3",
@@ -99,7 +103,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "repository": {
-    "url": "https://github.com/brybrophy/brophy-react-starter.git",
+    "url": "https://github.com/keyopsapp/keyops-pilot.git",
     "type": "git"
   }
 }

@@ -21,6 +21,7 @@ export default class SurveyApi {
     startSurvey(id) {
         return this.API.get(`${SurveyApi.surveyPath}/${id}/start`);
     }
+
 }
 
 SurveyApi.surveyPath = '/api/survey';

@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Provider, observer} from 'mobx-react'
 import LazyRoute from 'lazy-route'
 
+
 import Navigation from './layout/Navigation';
 
 @observer
@@ -32,10 +33,16 @@ export default class App extends Component {
                             />
                             <Route
                                 exact
-                                path="/display/:surveyId"
+                                path="/display/:surveyId/:postId/:clientId"
                                 render={(props) => <LazyRoute {...props} component={import('./display')}/>}
                             />
+                            <Route
+                                exact
+                                path="/results/:surveyId"
+                                render={(props) => <LazyRoute {...props} component={import('./results')}/>}
+                            />
                         </div>
+
                     </div>
                 </Provider>
             </Router>

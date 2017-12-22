@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {AppBar, Toolbar} from 'material-ui'
+import logo from '../../assets/logo.svg';
 
 import {withStyles} from 'material-ui/styles';
 
@@ -35,7 +36,9 @@ class Navigation extends Component {
                 <Toolbar>
                     {/*<Typography type="title" color="inherit">*/}
                     <Link to='/' className={classes.title}>
-                        KeyOps
+                        {/*KeyOps*/}
+                        <img src={logo} height={64}  />
+
                     </Link>
                     {/*</Typography>*/}
                 </Toolbar>

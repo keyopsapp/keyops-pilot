@@ -59,14 +59,14 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// CSRF protection
-app.use('/api', (req, res, next) => {
-  if (/json/.test(req.get('Accept'))) {
-    return next();
-  }
-
-  res.sendStatus(406);
-});
+// // CSRF protection
+// app.use('/api', (req, res, next) => {
+//   if (/json/.test(req.get('Accept'))) {
+//     return next();
+//   }
+//
+//   res.sendStatus(406);
+// });
 
 app.use(bodyParser.json());
 app.use(cookieParser());

@@ -3,35 +3,40 @@ import * as SurveyJSEditor from 'surveyjs-editor';
 import 'surveyjs-editor/surveyeditor.css';
 
 class SurveyEditor extends Component {
-    editor;
 
     componentDidMount() {
+        const {surveyId} = this.props;
 
 
         let defs = SurveyJSEditor
             .SurveyQuestionEditorDefinition
             .definition;
+        //     this.editor.loadSurvey(surveyId)
 
 
-        // defs["questionbase"]
-        //     .properties = ['name', 'description'];
-        //
-        // defs["text"]
-        //     .properties = ['placeHolder'];
-        //
-        // defs["selectbase"]
-        //     .properties = ['hasComment', 'hasOther'];
+        defs["questionbase"]
+            .properties = ['name', 'description'];
 
-        // defs["boolean"]
-        //     .properties = [];
+        defs["text"]
+            .properties = ['placeHolder'];
+
+        defs["selectbase"]
+            .properties = ['hasComment', 'hasOther'];
+
+        defs["boolean"]
+            .properties = [];
 
 
         let editorOptions = {
             showEmbededSurveyTab: false, showJSONEditorTab: false, showPropertyGrid: false,
-            // questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "comment", "rating", "boolean"]
+            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "comment", "rating", "boolean"]
         };
 
         this.editor = new SurveyJSEditor.SurveyEditor('surveyEditorContainer', editorOptions);
+        this.editor.loadSurvey(surveyId);
+        this.editor.isAutoSave = true;
+
+
         // console.log('hey!')
         // console.log(this.props.data)
         // this.editor.text = this.props.data;
@@ -75,9 +80,11 @@ class SurveyEditor extends Component {
 
 
         // this.editor.text = this.props.data;
-        if (this.editor && this.props.data) {
-            this.editor.text = typeof this.props.data === 'string' ? this.props.data : JSON.stringify(this.props.data);
-        }
+        // if (this.editor && surveyId) {
+        //     this.editor.loadSurvey(surveyId)
+
+        // this.editor.text = typeof this.props.data === 'string' ? this.props.data : JSON.stringify(this.props.data);
+        // }
 
         return (
             <div id="surveyEditorContainer"></div>
