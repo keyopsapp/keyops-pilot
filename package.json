@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "A starter project for a full-stack react app.",
   "main": "webpack.config.js",
+  "engines": {
+    "node": "8.4.0"
+  },
   "scripts": {
     "start": "node server/server.js",
     "start:dev": "env NODE_ENV=development node server/server.js",
