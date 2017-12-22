@@ -30,7 +30,8 @@
 //// Themes
 //@import 'themes/default';
 //@import 'bootstrap/dist/css/bootstrap.css';
-//@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+
 //@import '../../../node_modules/material-design-icons/
 
 //@import './bootstrap.css';
@@ -110,3 +111,5 @@ a {
 .cards-list {
 
 }
+
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';

@@ -5,7 +5,6 @@ import SurveyEditor from './SurveyEditor';
 // import './App.css';
 import {observer} from 'mobx-react'
 import EditTitle from "../common/EditTitle";
-require('bootstrap/dist/css/bootstrap.css');
 @observer
 class Editor extends Component {
 

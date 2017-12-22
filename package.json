@@ -7,7 +7,6 @@
     "node": "8.4.0"
   },
   "scripts": {
-
     "start": "node server/server.js",
     "start:dev": "env NODE_ENV=development node server/server.js",
     "start:debug": "env NODE_ENV=development node $NODE_DEBUG_OPTION server/server.js",
@@ -72,6 +71,7 @@
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
     "bookshelf-camelcase": "^1.1.4",
+    "bootstrap-sass": "^3.3.7",
     "chart.js": "^2.7.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
