@@ -9,7 +9,7 @@ export default class SurveyApi {
     getSurveys() {
         return this.API.get(`${SurveyApi.privatePath}/getActive`, {
             accessKey: SurveyApi.accessKey,
-            ownerId: 'keyopsmvp'
+            ownerId: 'keyopsmvp-prod'
         }).then((res) => {
             return orderBy(res, ['IsPublished', 'CreatedAt'], ['desc', 'desc'])
 
@@ -23,7 +23,7 @@ export default class SurveyApi {
     createSurvey(name) {
         return this.API.get(`${SurveyApi.privatePath}/create`, {
             accessKey: SurveyApi.accessKey,
-            ownerId: 'keyopsmvp',
+            ownerId: 'keyopsmvp-prod',
             name: name
         });
     }
