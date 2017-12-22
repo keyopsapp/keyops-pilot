@@ -84,4 +84,3 @@ if (module.hot) {
     });
 }
 
-require('bootstrap/dist/css/bootstrap.css');
