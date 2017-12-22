@@ -20,7 +20,6 @@ const app = express();
 
 const compression = require('compression');
 app.use(compression());
-
 const routes = require('./routes');
 
 app.disable('x-powered-by');
