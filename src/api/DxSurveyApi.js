@@ -7,13 +7,16 @@ export default class SurveyApi {
     }
 
     getSurveys() {
-        return this.API.get(`${SurveyApi.privatePath}/getActive`, {
-            accessKey: SurveyApi.accessKey,
-            ownerId: 'keyopsmvp-prod'
-        }).then((res) => {
-            return orderBy(res, ['IsPublished', 'CreatedAt'], ['desc', 'desc'])
+        // return this.API.get(`${SurveyApi.privatePath}/getActive`, {
+        //     accessKey: SurveyApi.accessKey,
+        //     ownerId: 'keyopsmvp-prod'
+        // })
+        //
+        return this.API.get(SurveyApi.surveyPath)
+            .then((res) => {
+                return orderBy(res, ['IsPublished', 'CreatedAt'], ['desc', 'desc'])
 
-        })
+            })
     }
 
     getSurveyById(id) {
@@ -21,35 +24,36 @@ export default class SurveyApi {
     }
 
     createSurvey(name) {
-        return this.API.get(`${SurveyApi.privatePath}/create`, {
-            accessKey: SurveyApi.accessKey,
-            ownerId: 'keyopsmvp-prod',
+
+        return this.API.post(`${SurveyApi.surveyPath}`, {
             name: name
         });
     }
 
 
     updateSurvey(id, survey) {
-        return this.API.post(`${SurveyApi.privatePath}/changeJson?accessKey=${SurveyApi.accessKey}`, {
-            json: survey,
-            // text: survey,
-            id: id
-        });
+
+        // var fd = new URLSearchParams();
+        // fd.append( 'Text',  survey);
+        // fd.append( 'Id',  id);
+
+        return this.API.put(`${SurveyApi.surveyPath}/${id}`, {
+                data: survey
+            }
+        );
+        // return this.API.postForm(`${SurveyApi.privatePath}/changeJson?accessKey=${SurveyApi.accessKey}`, fd);
     }
 
     changeSurveyName(id, newName) {
-        return this.API.get(`${SurveyApi.privatePath}/changeName/${id}`, {
-            accessKey: SurveyApi.accessKey,
+        return this.API.get(`${SurveyApi.surveyPath}/${id}/rename`, {
             name: newName
         });
     }
 
 
     startSurvey(id) {
-        return this.API.get(`${SurveyApi.privatePath}/publish/${id}`, {
-            accessKey: SurveyApi.accessKey,
-            generateNewId: true
-        });
+
+        return this.API.get(`${SurveyApi.surveyPath}/${id}/start`);
     }
 
     getResults(id) {

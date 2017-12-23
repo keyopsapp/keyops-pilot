@@ -30,7 +30,7 @@ export function getSurveyById(id) {
 
 }
 
-export function createSurvey(survey) {
+export function createSurvey() {
 
     // survey = {name: 'Survey: ' + surveyStore.surveys.length, data: {count: 0}};
 

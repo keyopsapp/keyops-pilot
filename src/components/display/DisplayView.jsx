@@ -79,19 +79,19 @@ class DisplayView extends Component {
 
         const survey = this.model ? <Survey.Survey model={this.model}/> : null;
 
-        return (
-            <Grid container
-                  spacing={24}
-                  justify="center">
-                <Grid item xs={6}>
-                    <Paper className={classes.page}>
+        return (survey)
+            {/*<Grid container*/}
+                  {/*spacing={24}*/}
+                  {/*justify="center">*/}
+                {/*<Grid item xs={6}>*/}
+                    {/*<Paper className={classes.page}>*/}
                         {/*<div className="surveyjs">*/}
-                            {survey}
+                            // survey
                         {/*</div>*/}
-                    </Paper>
-                </Grid>
-            </Grid>
-        );
+                    {/*</Paper>*/}
+                // </Grid>
+            // </Grid>
+        // );
     }
 }
 

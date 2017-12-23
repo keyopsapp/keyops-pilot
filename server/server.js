@@ -23,6 +23,12 @@ app.use(compression());
 
 const routes = require('./routes');
 
+app.use( function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 app.disable('x-powered-by');
 
 switch (app.get('env')) {

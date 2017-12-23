@@ -11,8 +11,18 @@ export default class ApiCore {
         return this._AXIOS.delete(urlPath).then(res => res.data).catch(cleanErrors);
     }
 
-    get(urlPath, params) {
-        return this._AXIOS.get(urlPath, { params }).then(res => res.data).catch(cleanErrors);
+    get (urlPath, params) {
+        return this._AXIOS.get(urlPath, {params}).then(res => res.data).catch(cleanErrors);
+    }
+    //
+    postForm(urlPath, data) {
+        return this._AXIOS({
+            method: 'post',
+            url: urlPath,
+            data: data,
+            config: {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+
+        }).then(res => res.data).catch(cleanErrors);
     }
 
     post(urlPath, data) {
@@ -27,8 +37,14 @@ export default class ApiCore {
 function generateAxiosInstance(apiConfig) {
     const axiosConfig = {
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
+            // Accept: '*/*',
+            // 'X-Requested-With': 'XMLHttpRequest',
+            // Host: 'surveyjs.io',
+            // Origin: 'https://surveyjs.io',
+            // Pragma: 'no-cache',
+            // Referer: 'https://surveyjs.io/Service/EditSurvey/de9a56a9-a3de-4c80-80bb-59f8986aefb1',
+            // 'Content-Type': 'application/x-www-form-urlencoded;'
+
         },
         timeout: 15000
     };
