@@ -33,8 +33,11 @@ module.exports = {
             },
             {
                 test: /\.scss|css$/,
-
                 loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']),
+                // loader: ExtractTextPlugin.extract(
+                //     'style',
+                //     'css?importLoaders=1!postcss')
+
 
             },
             {
@@ -66,12 +69,13 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(true),
         new webpack.LoaderOptionsPlugin({
-            test: /\.scss$/,
+            test: /\.scss|css$/,
             debug: true,
             options: {
                 postcss: function () {
                     return [precss, autoprefixer];
                 },
+                // context: path.join(__dirname, 'src'),
                 context: path.join(__dirname, 'src'),
                 output: {
                     path: path.join(__dirname, 'dist')

@@ -1,5 +1,6 @@
 
-require('./assets/styles/main.scss');
+import './assets/styles/main.scss';
+import 'survey-react/survey.css';
 
 import React from 'react'
 import ReactDOM from 'react-dom'

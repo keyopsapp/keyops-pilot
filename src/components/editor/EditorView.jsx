@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import 'survey-react/survey.css';
+// import 'survey-react/survey.css';
 import SurveyEditor from './SurveyEditor';
 // import logo from './logo.svg';
 // import './App.css';
