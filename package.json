@@ -101,6 +101,7 @@
     "react-chartjs": "git://github.com/reactjs/react-chartjs.git#chartjs-v2",
     "react-chartjs-2": "^2.6.4",
     "react-dom": "^15.6.2",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.0.0",
     "survey-react": "^0.98.3",
     "surveyjs-editor": "^0.98.3",
