@@ -5,6 +5,7 @@ import SurveyDisplay from './SurveyDisplay';
 // import logo from './logo.svg';
 // import './App.css';
 import {observer} from 'mobx-react'
+import 'survey-react/survey.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Grid, Paper, withStyles} from "material-ui";
 
