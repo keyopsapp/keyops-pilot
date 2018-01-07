@@ -40,6 +40,7 @@ $icon-font-path: '../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @import '../../../node_modules/surveyjs-editor/surveyeditor.css';
 
 html {
+
   font-size: inherit !important;
 }
 
@@ -55,9 +56,14 @@ a {
 
 .app-contnet {
 
-  padding-top: 80px;
+  padding-top: 60px;
+}
+
+.App {
+  margin-top:20px ;
   padding-left: 24px;
   padding-right: 24px;
+
 }
 
 @font-face {
@@ -125,14 +131,27 @@ a {
 
 html, body, #root, .wrapper, .app-contnet, #storeInjector, #actionsProvider, .sv_main, .sv_container, .sv_body {
   height: 100%;
+  background-color: #fff;
+
 }
 
+.sv_p_root {
+  min-height: 90%;
+}
+
+.sv_main {
+  padding-bottom: 10px;
+}
 .sv_body {
-  position: relative;
+  //padding-bottom: 30px!important;
+  //padding-top: 0!important;
+  //position: relative;
+  padding:0!important;
 }
 
 .sv_nav {
-  position: absolute;
-  right: 10px;
-  bottom: 0;
+  //position: absolute;
+  //right: 10px;
+  //bottom: 0;
+  padding: 0 20px!important;
 }
