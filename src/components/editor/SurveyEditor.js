@@ -13,18 +13,27 @@ class SurveyEditor extends Component {
         //     this.editor.loadSurvey(surveyId)
 
 
+        defs["questionbase"].tabs = [{name: 'visibleIf', title: 'Visible If (Coming Soon)', index: 100}]
         defs["questionbase"]
             .properties = ['name', 'description'];
+
 
         defs["text"]
             .properties = ['placeHolder'];
 
         defs["selectbase"]
-            .properties = ['hasComment', 'hasOther'];
+            .properties = [{name: 'hasOther', 'title': 'Add "Other" option'}, {
+            name: 'hasComment',
+            'title': 'Add "Other" option with comment'
+        }];
 
         defs["boolean"]
             .properties = [];
 
+        defs["rating"].properties = [{name: 'rateMin', title: 'Min Rate Value'}, {
+            name: 'rateMax',
+            title: 'Max Rate Value'
+        }];
 
         let editorOptions = {
             showEmbededSurveyTab: false, showJSONEditorTab: false, showPropertyGrid: false,
@@ -35,6 +44,12 @@ class SurveyEditor extends Component {
         this.editor.loadSurvey(surveyId);
         this.editor.isAutoSave = true;
 
+        // SurveyJSEditor.defaultStrings.p["hasComment"] = "Include a comment";
+        // SurveyJSEditor.defaultStrings.p["visibleIf"] = "Visible If (Coming Soon)";
+
+
+        // SurveyEditor.SurveyQuestionEditorDefinition.definition["questionbase"].properties =
+        //     ["title", "name", {name: "tag", title: "Tag"}, {name: "visible", category: "checks"}, {name: "isRequired", category: "checks"}];
 
         // console.log('hey!')
         // console.log(this.props.data)
@@ -67,9 +82,13 @@ class SurveyEditor extends Component {
         this.propsToHide = ['visibleIf', 'choicesByUrl', 'rateValues'];
 //
 //
-//         this.editor.onCanShowProperty.add((editor, options) => {
-//             options.canShow = this.propsToHide.indexOf(options.property.name) === -1;
-//         });
+        this.editor.onCanShowProperty.add((editor, options) => {
+            options.canShow = true;
+            if (options.property.name === "visibleIf") {
+                options.property.alternativeName = 'visibleIf (coming soon)';
+                // console.log(options)
+            }
+        });
 
 
 // console.log(this.editor.toolbox.items.map(item => item.name))

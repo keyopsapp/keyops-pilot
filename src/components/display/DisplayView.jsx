@@ -33,7 +33,7 @@ class DisplayView extends Component {
         const data = {
             // firstPageIsStarted: true,
             sendResultOnPageNext: true,
-            goNextPageAutomatic: true,
+            // goNextPageAutomatic: true,
             // cookieName: 'keyops_participant',
             surveyId: params.surveyId,
             surveyPostId: params.postId,
