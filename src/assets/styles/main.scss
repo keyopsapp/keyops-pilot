@@ -31,7 +31,6 @@
 //@import 'themes/default';
 //@import 'bootstrap/dist/css/bootstrap.css';
 
-
 //@import '../../../node_modules/material-design-icons/
 
 //@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -41,15 +40,17 @@ $icon-font-path: '../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @import '../../../node_modules/surveyjs-editor/surveyeditor.css';
 
 html {
-  font-size: inherit!important;
+  font-size: inherit !important;
 }
+
 body {
-  background-color: #f6f6f6!important;
+  background-color: #f6f6f6 !important;
 
 }
+
 a {
-  text-decoration: none!important;
-  color: inherit!important;
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
 .app-contnet {
@@ -71,16 +72,11 @@ a {
   url(../material-icons/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-
-
-
-
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -116,3 +112,27 @@ a {
 
 }
 
+.sv_main .sv_container {
+  max-width: 100%;
+  margin: auto;
+  position: relative;
+  padding: 0;
+}
+
+.sv_main .sv_container .sv_header {
+  padding: 0;
+}
+
+html, body, #root, .wrapper, .app-contnet, #storeInjector, #actionsProvider, .sv_main, .sv_container, .sv_body {
+  height: 100%;
+}
+
+.sv_body {
+  position: relative;
+}
+
+.sv_nav {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+}

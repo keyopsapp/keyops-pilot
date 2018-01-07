@@ -1,6 +1,6 @@
 
-import './assets/styles/main.scss';
 import 'survey-react/survey.css';
+import './assets/styles/main.scss';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
