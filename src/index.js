@@ -62,6 +62,16 @@ const stores = {
     surveyStore
 };
 
+window.addEventListener("load",function() {
+    // Set a timeout...
+    console.log('started')
+    setTimeout(function(){
+        // Hide the address bar!
+        console.log('loaded')
+        window.scrollTo(0, 1);
+    }, 0);
+});
+
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
         <AppContainer>
