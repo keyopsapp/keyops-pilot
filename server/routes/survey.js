@@ -98,6 +98,16 @@ const createSurvey = function (req, res, next) {
 
 };
 
+const chnageJson = function (id, data) {
+
+    return axios.post(`${privatePath}/changeJson`, {
+        Json: data,
+        Id: id
+    }, {
+        params: {accessKey: accessKey}
+    })
+}
+
 const updateSurvey = function (req, res, next) {
     const {id} = req.params;
     const {data} = req.body;
@@ -106,19 +116,14 @@ const updateSurvey = function (req, res, next) {
     // const nextSurvey = {name, data, status};
 
 
-    return axios.post(`${privatePath}/changeJson`, {
-        Json: data,
-        Id: id
-    }, {
-        params: {accessKey: accessKey},
-    })
+    return chnageJson(id, data)
         .then(response => {
 
             res.json(response.data);
         })
         .catch(err => {
             return next(err);
-        })
+        });
 
 
     //
@@ -153,9 +158,26 @@ const startSurvey = function (req, res, next) {
     const {id} = req.params;
 
 
-    return axios.get(`${privatePath}/publish/${id}`, {params: {generateNewId: true, accessKey: accessKey}})
+    return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
         .then(response => {
 
+            const survey = response.data;
+
+            survey.pages = [{
+                "name": "start_page",
+                "elements": [{
+                    type: "html",
+                    html: "Please click click start to begin the survey.\n\n\n\n\n\n\n\n\n",
+                    name: "start_survey"
+                }]
+            }, ...survey.pages];
+
+            return chnageJson(id, JSON.stringify(survey));
+        })
+        .then(response => {
+            return axios.get(`${privatePath}/publish/${id}`, {params: {generateNewId: true, accessKey: accessKey}})
+        })
+        .then(response => {
             res.json(response.data);
         })
         .catch(err => {
@@ -179,7 +201,7 @@ const changeSurveyName = function (req, res, next) {
 
 }
 //
-// const startSurvey = function (req, res, next) {
+// const startSurvey = function (req, res, next) {
 //     const {id} = req.params;
 //     // const {name, data, status} = req.body;
 //     const nextSurvey = {status:'running'};

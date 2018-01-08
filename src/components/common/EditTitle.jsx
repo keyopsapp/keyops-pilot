@@ -9,7 +9,19 @@ const styles = {
 
 class EditTitle extends React.Component {
 
-    state = {isEdit: false, value: '', originValue: ''};
+    state = {isEdit: false, value: null, originValue: null};
+
+    getVal = () => {
+
+        if (this.state.value || this.state.value === '') {
+            return this.state.value;
+        }
+        else if (this.state.value === null) {
+            return this.props.value;
+        }
+
+        return null;
+    }
 
     componentWillMount() {
 
@@ -24,7 +36,6 @@ class EditTitle extends React.Component {
 
     handleClick = (e) => {
         if (this.node.contains(e.target)) {
-            // console.log('click inside');
             return;
         }
 
@@ -33,7 +44,11 @@ class EditTitle extends React.Component {
 
     handleClickOutside() {
         // console.log('click outside');
-        this.setState({isEdit: false, value: this.state.originValue})
+
+        if (this.state.oldValue !== this.state.value) {
+            this.setState({isEdit: false, oldValue: this.getVal(), value: this.getVal()});
+            this.props.onChange(this.state.value);
+        }
 
     }
 
@@ -72,9 +87,9 @@ class EditTitle extends React.Component {
                         this.input = input;
                     }}
                     name="text"
-                    value={this.state.value || this.props.value}
-                    onChange={(e) => this.setState({value: e.target.value})}
-                    onFocus={(e) => this.setState({isEdit: true})}
+                    value={this.getVal()}
+                    onChange={(e) => this.setState({oldValue: this.state.value, value: e.target.value})}
+                    onFocus={(e) => this.setState({oldValue: this.state.value, isEdit: true})}
                 />
 
                 <IconButton onClick={this.handleClickButton}>

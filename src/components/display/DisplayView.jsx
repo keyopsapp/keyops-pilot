@@ -9,11 +9,12 @@ import {observer} from 'mobx-react'
 import {Grid, Paper, withStyles} from "material-ui";
 
 const styles = {
-    page:{
-        padding:20,
-        height:'100%'
+    page: {
+        padding: 20,
+        height: '100%'
     }
 }
+
 @observer
 class DisplayView extends Component {
 
@@ -28,25 +29,31 @@ class DisplayView extends Component {
 
 
         // const pub = surveyStore.survey.publishedinfo ? surveyStore.survey.publishedinfo : {};
-
+        //{"survey":{"pages":[{"name":"page1","elements":[{"type":"radiogroup","choices":["item1","item2","item3"],"name":"question1"}]}]},"isCompleted":"no"}
 
         const data = {
-            // firstPageIsStarted: true,
+            firstPageIsStarted: true,
             sendResultOnPageNext: true,
             // goNextPageAutomatic: true,
             // cookieName: 'keyops_participant',
             surveyId: params.surveyId,
             surveyPostId: params.postId,
             clientId: params.clientId,
-            // startSurveyText: "Start",
-
-
+            startSurveyText: "Start"
         };
 
 
         this.model = new Survey.Model(data);
         // model.firstPageIsStarted = true;
     }
+
+    onPageChange = (e, opt) => {
+
+        if (!opt.oldCurrentPage || opt.newCurrentPage.id > opt.oldCurrentPage.id) {
+            window.scrollTo(0, 0);
+        }
+
+    };
 
 
     render() {
@@ -77,20 +84,28 @@ class DisplayView extends Component {
 
         // console.log(surveyStore.survey.data)
 
-        const survey = this.model ? <Survey.Survey model={this.model}/> : null;
+        const survey = this.model ? <Survey.Survey model={this.model} onCurrentPageChanged={this.onPageChange}/> : null;
 
         return (survey)
-            {/*<Grid container*/}
-                  {/*spacing={24}*/}
-                  {/*justify="center">*/}
-                {/*<Grid item xs={6}>*/}
-                    {/*<Paper className={classes.page}>*/}
-                        {/*<div className="surveyjs">*/}
-                            // survey
-                        {/*</div>*/}
-                    {/*</Paper>*/}
-                // </Grid>
-            // </Grid>
+        {/*<Grid container*/
+        }
+        {/*spacing={24}*/
+        }
+        {/*justify="center">*/
+        }
+        {/*<Grid item xs={6}>*/
+        }
+        {/*<Paper className={classes.page}>*/
+        }
+        {/*<div className="surveyjs">*/
+        }
+        // survey
+        {/*</div>*/
+        }
+        {/*</Paper>*/
+        }
+        // </Grid>
+        // </Grid>
         // );
     }
 }

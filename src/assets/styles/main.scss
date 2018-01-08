@@ -56,7 +56,7 @@ a {
 
 .app-contnet {
 
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .App {
@@ -142,14 +142,29 @@ a {
 //.sv_main {
 //  padding-bottom: 10px;
 //}
-//.sv_body {
+h3 {
+  font-size: 16px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.sv_body {
+  border-top: none!important;
+  padding: 1em 1em 5em 1em!important;
+}
 //  //padding-bottom: 30px!important;
 //  //padding-top: 0!important;
 //  //position: relative;
 //  padding:0!important;
 //}
+
+.sv_row:only-child {
+  border-bottom: none!important;
+}
 //
-//.sv_nav {
+.sv_nav {
+  padding: 0 20px;
+  background-color: #fff!important;
+}
 //  //position: absolute;
 //  //right: 10px;
 //  //bottom: 0;
