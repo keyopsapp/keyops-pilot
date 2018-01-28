@@ -45,7 +45,7 @@ html {
 }
 
 body {
-  //background-color: #f6f6f6 !important;
+  background-color: #fafafa !important;
 
 }
 
@@ -60,7 +60,7 @@ a {
 }
 
 .App {
-  margin-top:20px ;
+  margin-top: 20px;
   padding-left: 24px;
   padding-right: 24px;
 
@@ -128,6 +128,7 @@ a {
 .sv_main .sv_container .sv_header {
   padding: 0;
 }
+
 //
 //html, body, #root, .wrapper, .app-contnet, #storeInjector, #actionsProvider, .sv_main, .sv_container, .sv_body {
 //  height: 100%;
@@ -147,10 +148,12 @@ h3 {
   margin-left: 20px;
   margin-right: 20px;
 }
+
 .sv_body {
-  border-top: none!important;
-  padding: 1em 1em 5em 1em!important;
+  border-top: none !important;
+  padding: 1em 1em 5em 1em !important;
 }
+
 //  //padding-bottom: 30px!important;
 //  //padding-top: 0!important;
 //  //position: relative;
@@ -158,15 +161,31 @@ h3 {
 //}
 
 .sv_row:only-child {
-  border-bottom: none!important;
+  border-bottom: none !important;
 }
+
 //
 .sv_nav {
   padding: 0 20px;
-  background-color: #fff!important;
+  background-color: #fff !important;
 }
+
 //  //position: absolute;
 //  //right: 10px;
 //  //bottom: 0;
 //  padding: 0 20px!important;
 //}
+
+.animate-money {
+  span {
+    &:last-child {
+      transition: transform 200ms, opacity 200ms;
+      opacity: 0;
+      transform: scale(5, 5);
+    }
+  }
+}
+
+a[disabled] {
+  pointer-events: none;
+}

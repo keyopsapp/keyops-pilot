@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Card, CardContent, Table, TableBody, TableCell, TableHead, TableRow, Typography, withStyles} from "material-ui";
+import {
+    Card,
+    CardContent,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Typography,
+    withStyles,
+    Icon,
+    CardHeader,
+    IconButton
+} from "material-ui";
 import {grey, green, yellow} from 'material-ui/colors';
 
-import {Doughnut} from "react-chartjs-2";
+import {Doughnut, HorizontalBar} from "react-chartjs-2";
 
 const styles = theme => ({
     cardContnet: {
@@ -110,10 +123,17 @@ const styles = theme => ({
 class RatingDisplay extends React.Component {
 
 
+    state = {chartType: 'bar'};
+
     constructor() {
         super();
 
     };
+
+
+    changeChart(type) {
+        this.setState({chartType: type});
+    }
 
     render() {
         const {classes, dateSubmitted} = this.props;
@@ -180,10 +200,41 @@ class RatingDisplay extends React.Component {
         };
 
 
+        const barOptions = {
+            ...options, scales: {
+                xAxes: [{
+                    ticks: {
+                        max: 100,
+                        min: 0,
+                        stepSize: 10,
+                        callback: function (value) {
+                            return value + "%"
+                        }
+                    }
+                }]
+            }
+        }
+
+
+        var chart = this.state.chartType === 'pie' ?
+            <Doughnut ref='chart' data={data} width={100} height={300} options={options}/> :
+            <HorizontalBar ref='chart' data={data} width={100} height={300} options={barOptions}/>
+
+
         return (
 
             <Card className={classes.card}>
+                <CardHeader
+                    action={<div>
+                        <IconButton onClick={() => this.changeChart('pie')} disabled={this.state.chartType === 'pie'}>
+                            <Icon>pie_chart</Icon>
+                        </IconButton>
+                        <IconButton onClick={() => this.changeChart('bar')} disabled={this.state.chartType === 'bar'}>
+                            <Icon>insert_chart</Icon>
+                        </IconButton></div>
+                    }
 
+                />
                 <CardContent className={classes.cardContnet}>
 
 
@@ -212,7 +263,7 @@ class RatingDisplay extends React.Component {
                     {/*</div>*/}
 
                     <div className={classes.chartContainer}>
-                        <Doughnut ref='chart' data={data} width={100} height={300} options={options}/>
+                        {chart}
                     </div>
 
                     <div className={classes.root}>
@@ -234,7 +285,7 @@ class RatingDisplay extends React.Component {
                                     // else if (l === 'false') {
                                     //     l = 'No';
                                     // }
-                                        
+
                                     return (
 
                                         <TableRow key={'i' + i}>

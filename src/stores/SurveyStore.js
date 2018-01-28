@@ -6,6 +6,7 @@ import {observable, action} from 'mobx'
 class SurveyStore {
     @observable surveys = [];
     // @observable survey;
+    @observable current = {amount: 0};
     @observable.shallow survey = {};
     @observable results = {data: []};
 
@@ -22,6 +23,15 @@ class SurveyStore {
         // this.survey = {};
         // this.survey.data = @observable.ref(null)
 
+    }
+
+    @action
+    setAmount(amount) {
+        this.current.amount = amount;
+    }
+
+    getAmount() {
+        return this.current.amount;
     }
 
     @action

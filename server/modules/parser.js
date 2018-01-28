@@ -62,6 +62,7 @@ class Parser {
 
                 if (item[0] == 'HappendAt') {
                     this.dateSubmitted = item[1].reduce((a, b) => new Date(a) > new Date(b) ? a : b);
+
                     return null;
                 }
 
@@ -95,8 +96,8 @@ class Parser {
                 }
                 else if (q.type === 'boolean') {
                     obj = {
-                        'Yes': obj['true'],
-                        'No': obj['false'],
+                        'Yes': obj['true'] || 0,
+                        'No': obj['false'] || 0,
 
                     }
                 }

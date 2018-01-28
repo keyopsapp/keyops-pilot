@@ -19,7 +19,7 @@ export default class App extends Component {
             <Router>
                 <Provider {...this.stores}>
                     <div className="wrapper">
-                        <Navigation/>
+                        <Navigation {...this.props} />
                         <div className="app-contnet">
                             <Route
                                 exact
@@ -32,6 +32,7 @@ export default class App extends Component {
                                 render={(props) => <LazyRoute {...props} component={import('./editor')}/>}
                             />
                             <Route
+                                name="display"
                                 exact
                                 path="/display/:surveyId/:postId/:clientId"
                                 render={(props) => <LazyRoute {...props} component={import('./display')}/>}

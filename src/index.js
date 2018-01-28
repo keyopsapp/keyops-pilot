@@ -1,4 +1,3 @@
-
 import 'survey-react/survey.css';
 import './assets/styles/main.scss';
 
@@ -10,10 +9,11 @@ import exampleStore from './stores/ExampleStore'
 import surveyStore from './stores/SurveyStore'
 import 'typeface-roboto'
 // import 'material-ui-icons'
-import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
+import {MuiThemeProvider, createMuiTheme, createPalette} from 'material-ui/styles';
 import {purple, green, red, blue, teal, indigo, cyan, pink} from 'material-ui/colors'
 
 const primary = red[500]; // #F44336
+
 
 
 // test = {
@@ -35,23 +35,42 @@ const test = {
     200: '#B3E5FC',
     300: '#B3E5FC',
     400: '#B3E5FC',
-    500:  '#03A9F4',
+    500: '#03A9F4',
     600: '#0288D1',
     700: '#0288D1',
     800: '#0288D1',
     900: '#0288D1',
     A100: '#00e5ff',
-    A200:'#00BCD4',
-    A400:'#00e3ff',
+    A200: '#00BCD4',
+    A400: '#00e3ff',
     A700: '#00BCD4',
     contrastDefaultColor: 'light'
 
 }
 
+// All the following keys are optional.
+// We try our best to provide a great default value.
+// const theme = createMuiTheme({
+//     palette: {
+//         primary: indigo,
+//         secondary: pink,
+//         error: {
+//             main: red[500],
+//         },
+//         // Used by `getContrastText()` to maximize the contrast between the background and
+//         // the text.
+//         contrastThreshold: 3,
+//         // Used by the functions below to shift a color's luminance by approximately
+//         // two indexes within its tonal palette.
+//         // E.g., shift from Red 500 to Red 300 or Red 700.
+//         tonalOffset: 0.2,
+//     },
+// });
+// //
 const theme = createMuiTheme({
     palette: {
-        primary:teal,
-        secondary: pink,
+        primary: {...teal, 500: '#FFFFFF', },
+        secondary: {...teal, 'A200': '#288fcc'},
         error: red,
     }
 
@@ -69,7 +88,7 @@ function toggleFullScreen() {
     var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
     var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
-    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
         requestFullScreen.call(docEl);
     }
     else {
@@ -77,10 +96,10 @@ function toggleFullScreen() {
     }
 }
 
-window.addEventListener("load",function() {
+window.addEventListener("load", function () {
     // Set a timeout...
     console.log('started')
-    setTimeout(function(){
+    setTimeout(function () {
         // Hide the address bar!
         console.log('loaded')
         toggleFullScreen()

@@ -77,7 +77,7 @@ export function deleteSurvey(id) {
 }
 
 export function getResults(id) {
-    api.surveyApi.getResults(id)
+    return api.surveyApi.getResults(id)
         .then(res => surveyStore.getResults(res))
         .catch(err => {
             console.error(err);

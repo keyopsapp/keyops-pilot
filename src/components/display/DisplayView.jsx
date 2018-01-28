@@ -15,6 +15,8 @@ const styles = {
     }
 }
 
+var test = 0;
+
 @observer
 class DisplayView extends Component {
 
@@ -33,27 +35,55 @@ class DisplayView extends Component {
 
         const data = {
             firstPageIsStarted: true,
-            sendResultOnPageNext: true,
+            // sendResultOnPageNext: true,
             // goNextPageAutomatic: true,
             // cookieName: 'keyops_participant',
             surveyId: params.surveyId,
             surveyPostId: params.postId,
             clientId: params.clientId,
-            startSurveyText: "Start"
+            startSurveyText: "Start",
+            showPrevButton:false
         };
 
 
+        console.log('asdas')
+
         this.model = new Survey.Model(data);
+        this.survey = <Survey.Survey  model={this.model} onCurrentPageChanged={(m,opt)=>this.onPageChange(opt)} />
         // model.firstPageIsStarted = true;
+
     }
 
-    onPageChange = (e, opt) => {
+    debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
 
+
+    onPageChange = this.debounce((opt) => {
+
+        //
         if (!opt.oldCurrentPage || opt.newCurrentPage.id > opt.oldCurrentPage.id) {
             window.scrollTo(0, 0);
+
         }
 
-    };
+        if (opt.oldCurrentPage  && opt.newCurrentPage.id > opt.oldCurrentPage.id) {
+
+            this.props.surveyStore.setAmount(this.props.surveyStore.getAmount() + 100);
+        }
+    }, 200);
+
 
 
     render() {
@@ -84,9 +114,11 @@ class DisplayView extends Component {
 
         // console.log(surveyStore.survey.data)
 
-        const survey = this.model ? <Survey.Survey model={this.model} onCurrentPageChanged={this.onPageChange}/> : null;
+        // console.log('test')
+        // const survey = this.model ?
+           return this.survey;
 
-        return (survey)
+        // return (survey)
         {/*<Grid container*/
         }
         {/*spacing={24}*/
@@ -110,4 +142,9 @@ class DisplayView extends Component {
     }
 }
 
-export default withStyles(styles)(DisplayView);
+export default withStyles(styles)
+
+(
+    DisplayView
+)
+;

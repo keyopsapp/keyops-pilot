@@ -14,6 +14,8 @@ import RatingDisplay from "./RatingDisplay";
 @observer
 class ResultsView extends Component {
 
+
+    state = {chartStates:[]}
     componentDidMount() {
 
         const {match: {params}} = this.props;
@@ -29,6 +31,10 @@ class ResultsView extends Component {
          this.props.actions2.resetResults();
     }
 
+    setChart = (type) => {
+
+    };
+
 
     render() {
 
@@ -36,18 +42,18 @@ class ResultsView extends Component {
         const {surveyStore} = this.props;
         const {data, totalResults, dateSubmitted} = surveyStore.results;
 
-        console.log(data)
         const items = data.map((q, i) => {
-            if (['radiogroup', 'checkbox', 'dropdown', ].indexOf(q.type) > -1) {
-                return <SelectDisplayBase key={q.name} dateSubmitted={dateSubmitted} data={q}/>
-
-            }
-            else if (['comment', 'text'].indexOf(q.type) > -1) {
+             if (['comment', 'text'].indexOf(q.type) > -1) {
                 return <TextDisplayBase key={q.name} dateSubmitted={dateSubmitted} data={q}/>
 
             }
-            else if (['rating', 'boolean'].indexOf(q.type) > -1) {
-                return <RatingDisplay key={q.name} dateSubmitted={dateSubmitted} data={q}/>
+            else if (this.state.chartStates[i] === 1) {
+                return <SelectDisplayBase key={q.name} dateSubmitted={dateSubmitted} data={q}/>
+            }
+             else {
+                return <RatingDisplay key={q.name}
+                                      changeChart={this.setChart}
+                                      dateSubmitted={dateSubmitted} data={q}/>
 
             }
         });
