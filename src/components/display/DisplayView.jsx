@@ -49,7 +49,7 @@ class DisplayView extends Component {
         console.log('asdas')
 
         this.model = new Survey.Model(data);
-        this.survey = <Survey.Survey  model={this.model} onCurrentPageChanged={(m,opt)=>this.onPageChange(opt)} />
+        this.survey = <Survey.Survey  model={this.model} onCurrentPageChanged={(m,opt)=>this.onPageChange(opt)}  onComplete={(m,opt)=>this.onPageChange({isComplete:true})} />
         // model.firstPageIsStarted = true;
 
     }
@@ -78,9 +78,9 @@ class DisplayView extends Component {
 
         }
 
-        if (opt.oldCurrentPage  && opt.newCurrentPage.id > opt.oldCurrentPage.id) {
+        if (opt.oldCurrentPage  && opt.newCurrentPage.id > opt.oldCurrentPage.id || opt.isComplete) {
 
-            this.props.surveyStore.setAmount(this.props.surveyStore.getAmount() + 100);
+            this.props.surveyStore.setAmount(this.props.surveyStore.getAmount() + Math.floor(Math.random() * 100) + 10  );
         }
     }, 200);
 
