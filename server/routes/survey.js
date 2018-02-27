@@ -174,8 +174,12 @@ const startSurvey = function (req, res, next) {
 
             return chnageJson(id, JSON.stringify(survey));
         })
+
         .then(response => {
             return axios.get(`${privatePath}/publish/${id}`, {params: {generateNewId: true, accessKey: accessKey}})
+        })
+        .then(response => {
+            return axios.get(`${privatePath}/makeResultPublic/${id}`, {params: {makeResultPublic: true, accessKey: accessKey}})
         })
         .then(response => {
             res.json(response.data);

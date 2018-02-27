@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {observer} from 'mobx-react';
-import {AppBar, Toolbar, Icon, IconButton, Badge} from 'material-ui'
+import {AppBar, Toolbar, Icon, IconButton, Badge, Button} from 'material-ui'
 import logo from '../../assets/logo.png';
 import {observe} from 'mobx';
 
@@ -63,16 +63,26 @@ class Navigation extends Component {
     }
 
 
-    componentDidMount() {
+    componentWillReact() {
+        this.setState({
+            isDisplay: location.pathname.indexOf('display') > -1,
+            isResults: location.pathname.indexOf('results') > -1
+        })
+    }
+
+    componentWillMount() {
 
         const {surveyStore, location} = this.props;
         this.disposer = observe(surveyStore.current, (change) => {
             this.addMoney(change.newValue);
             // console.log(change)
         });
+        this.setState({
+            isDisplay: location.pathname.indexOf('display') > -1,
+            isResults: location.pathname.indexOf('results') > -1
+        })
 
 
-        this.setState({isDisplay: location.pathname.indexOf('display') > -1})
         // setInterval(() => surveyStore.addAmount(100), 5000)
 
 
@@ -84,8 +94,9 @@ class Navigation extends Component {
 
     render() {
 
-        const {classes, surveyStore} = this.props;
+        const {classes, surveyStore, location} = this.props;
 
+        const surveyId = location.pathname.split('/')[2]
 
         let icon;
         if (this.state.isDisplay) {
@@ -95,7 +106,7 @@ class Navigation extends Component {
             </Badge>
         }
         else {
-            icon = <Icon style={{fontSize: 36, top: -5, position: 'relative'}}>account_circle</Icon>
+            icon = <Icon style={{fontSize: 36, position: 'relative'}}>account_circle</Icon>
         }
 
 
@@ -117,10 +128,18 @@ class Navigation extends Component {
 
                     </Link>
                     {/*</Typography>*/}
+                    {this.state.isResults &&
+
+                    <Button href={`https://dxsurvey.com/Results/ExportResults/${surveyId}?format=csv`}>
+                        <Icon style={{fontSize: 20, color: 'black'}}>file_download</Icon>
+                        <span style={{color: 'black'}}>Export</span>
+                    </Button>}
+
                     <IconButton color="inherit" aria-label="Menu">
                         {icon}
-
                     </IconButton>
+
+
                 </Toolbar>
             </AppBar>
 
