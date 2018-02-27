@@ -35,7 +35,7 @@ class DisplayView extends Component {
 
         const data = {
             firstPageIsStarted: true,
-            // sendResultOnPageNext: true,
+            sendResultOnPageNext: true,
             // goNextPageAutomatic: true,
             // cookieName: 'keyops_participant',
             surveyId: params.surveyId,
@@ -45,8 +45,6 @@ class DisplayView extends Component {
             showPrevButton:false
         };
 
-
-        console.log('asdas')
 
         this.model = new Survey.Model(data);
         this.survey = <Survey.Survey  model={this.model} onCurrentPageChanged={(m,opt)=>this.onPageChange(opt)}  onComplete={(m,opt)=>this.onPageChange({isComplete:true})} />

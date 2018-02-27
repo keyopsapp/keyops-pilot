@@ -51,9 +51,8 @@ export default class SurveyApi {
     }
 
 
-    startSurvey(id) {
-
-        return this.API.get(`${SurveyApi.surveyPath}/${id}/start`);
+    startSurvey(id, surveyName, groupId) {
+        return this.API.get(`${SurveyApi.surveyPath}/${id}/start?group=${groupId}&name=${surveyName}`);
     }
 
     getResults(id) {

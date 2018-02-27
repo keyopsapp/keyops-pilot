@@ -10,6 +10,7 @@ import {grey, green, yellow, pink} from 'material-ui/colors'
 import {withStyles} from 'material-ui/styles';
 
 import Card, {CardContent, CardActions} from 'material-ui/Card';
+import ConfirmationDialog from "./ConfirmationDialog";
 
 const styles = theme => ({
     link: {
@@ -121,8 +122,8 @@ const styles = theme => ({
         top: 90,
         position: 'sticky'
     },
-    progress:{
-        marginLeft:130,
+    progress: {
+        marginLeft: 130,
     }
 
 });
@@ -138,6 +139,9 @@ class HomeView extends Component {
         this.props.actions2.getSurveys();
     }
 
+    handleClose = value => {
+        this.setState({value, open: false});
+    }
 
     createSurvey() {
         const {actions2, history} = this.props;
@@ -152,20 +156,25 @@ class HomeView extends Component {
     }
 
 
-    startSurvey(survey) {
+    publishSurvey = (groupId) => {
+        this.setState({open: false});
 
         const {actions2, showMessage, showLink, surveyStore} = this.props;
-        // const updated = {...survey, status: 'running'};
-        // console.log(updated)
+        const survey = this.state.survey;
 
-
-        actions2.startSurvey(survey.Id)
+        actions2.startSurvey(survey.Id, survey.Name, groupId)
             .then(() => {
                 const msg = <span> Survey is live. <a className={this.props.classes.link}
                                                       href={`/display/${survey.Id}/${survey.PostId}/{userid}`}>Click here</a> to access it.</span>
                 showMessage(msg);
             })
             .catch(() => showMessage('Please add some questions to the survey first.'));
+    }
+
+    startSurvey(survey) {
+
+        this.setState({open: true, survey: survey});
+
     }
 
     onSelect = (id) => {
@@ -209,7 +218,7 @@ class HomeView extends Component {
                     <div className={`${classes.statusBar} ${survey.IsPublished ? 'running' : 'draft'}`}>
 
                     </div>
-                    <CardContent className={classes.cardContnet}  onClick={() => this.onSelect(survey.Id)}>
+                    <CardContent className={classes.cardContnet} onClick={() => this.onSelect(survey.Id)}>
 
 
                         <div>
@@ -415,7 +424,8 @@ class HomeView extends Component {
                             </Card>
 
                             {surveyInfo}
-                            {this.state.surveyLoading? <CircularProgress color="accent" className={classes.progress}/> : ''}
+                            {this.state.surveyLoading ?
+                                <CircularProgress color="accent" className={classes.progress}/> : ''}
 
                             {/*<Card className={classes.infoCard} elevation={0}>*/}
                             {/*<CardContent>*/}
@@ -437,6 +447,16 @@ class HomeView extends Component {
                     </Grid>
 
                     <Grid item xs={7}>
+
+                        <ConfirmationDialog
+
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            onOk={this.publishSurvey}
+                            value={this.state.value}
+                        />
+
+
                         <div className="cards-list">
                             {cards}
                         </div>

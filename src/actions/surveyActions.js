@@ -58,9 +58,9 @@ export function setCurrent(id) {
 }
 
 
-export function startSurvey(id) {
+export function startSurvey(id, surveyName, groupId) {
     // console.log(survey)
-    return api.surveyApi.startSurvey(id)
+    return api.surveyApi.startSurvey(id, surveyName, groupId)
         .then(res => surveyStore.startSurvey(id))
     // .catch(err => {
     //     console.error(err);

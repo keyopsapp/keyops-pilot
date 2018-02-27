@@ -154,8 +154,10 @@ const updateSurvey = function (req, res, next) {
     //     });
 };
 
+
 const startSurvey = function (req, res, next) {
     const {id} = req.params;
+    const {group, name} = req.query;
 
 
     return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
@@ -180,6 +182,12 @@ const startSurvey = function (req, res, next) {
         })
         .then(response => {
             return axios.get(`${privatePath}/makeResultPublic/${id}`, {params: {makeResultPublic: true, accessKey: accessKey}})
+        })
+        .then((response) => {
+
+            return mailer.send(id, name, group)
+                .then(() => response)
+
         })
         .then(response => {
             res.json(response.data);
