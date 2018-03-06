@@ -157,7 +157,7 @@ const updateSurvey = function (req, res, next) {
 
 const startSurvey = function (req, res, next) {
     const {id} = req.params;
-    const {group, name} = req.query;
+    const {group, name, clientId} = req.query;
 
 
     return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
@@ -169,7 +169,14 @@ const startSurvey = function (req, res, next) {
                 "name": "start_page",
                 "elements": [{
                     type: "html",
-                    html: "Please click click start to begin the survey.\n\n\n\n\n\n\n\n\n",
+                    html: "Please answer the question(s) on the next page. Your name is not attached to your response when presented to the industry sponsor. <br>" +
+                    "<br>" +
+                    "After you complete the question you can click submit and you can close your browser if you wish. <br>" +
+                    "<br>" +
+                    "Please let us know if there are any technical issues.<br>" +
+                    "<br>" +
+                    "Thanks again<br>" +
+                    "The Keyops Team",
                     name: "start_survey"
                 }]
             }, ...survey.pages];
@@ -177,15 +184,21 @@ const startSurvey = function (req, res, next) {
             return chnageJson(id, JSON.stringify(survey));
         })
 
+
         .then(response => {
             return axios.get(`${privatePath}/publish/${id}`, {params: {generateNewId: true, accessKey: accessKey}})
         })
         .then(response => {
-            return axios.get(`${privatePath}/makeResultPublic/${id}`, {params: {makeResultPublic: true, accessKey: accessKey}})
+            return axios.get(`${privatePath}/makeResultPublic/${id}`, {
+                params: {
+                    makeResultPublic: true,
+                    accessKey: accessKey
+                }
+            })
         })
         .then((response) => {
 
-            return mailer.send(id, name, group)
+            return mailer.send(id, clientId, name, group)
                 .then(() => response)
 
         })
@@ -193,6 +206,12 @@ const startSurvey = function (req, res, next) {
             res.json(response.data);
         })
         .catch(err => {
+
+            if (err === 'no-group' || 'fail-send') {
+                return res.status(400);
+            }
+
+
             return next(err);
         })
 
@@ -281,6 +300,22 @@ const getSurveyResults = function (req, res, next) {
 
 };
 
+const sendTestEmail = function (req, res, next) {
+
+        const {id} = req.params;
+        const {group, name} = req.query;
+
+        return mailer.send(id, name, group)
+            .then((response) => {
+                res.json(response);
+            })
+            .catch(err => {
+                next(err);
+            });
+
+
+    }
+;
 
 module.exports = {
     getAllSurveys,
@@ -290,7 +325,8 @@ module.exports = {
     deleteSurvey,
     startSurvey,
     getSurveyResults,
-    changeSurveyName
+    changeSurveyName,
+    sendTestEmail
 }
 
 

@@ -34,4 +34,8 @@ router.route('/survey/:id/results')
 router.route('/survey/:id/rename')
     .get(surveyRoutes.changeSurveyName)
 
+
+router.route('/survey/:id/sendTestEmail')
+    .get(surveyRoutes.sendTestEmail)
+
 module.exports = router;

@@ -162,13 +162,20 @@ class HomeView extends Component {
         const {actions2, showMessage, showLink, surveyStore} = this.props;
         const survey = this.state.survey;
 
-        actions2.startSurvey(survey.Id, survey.Name, groupId)
+        actions2.startSurvey(survey.Id, survey.PostId, survey.Name, groupId)
             .then(() => {
                 const msg = <span> Survey is live. <a className={this.props.classes.link}
-                                                      href={`/display/${survey.Id}/${survey.PostId}/{userid}`}>Click here</a> to access it.</span>
+                                                      href={`/display/${survey.Id}/${survey.PostId}/preview`}>Click here</a> to access it.</span>
                 showMessage(msg);
             })
-            .catch(() => showMessage('Please add some questions to the survey first.'));
+            .catch((error) => {
+                if(error.response.status === 404){
+                    showMessage('Please add some questions to the survey first.')
+                }
+                else {
+                    showMessage('Some error occurred.')
+                }
+            });
     }
 
     startSurvey(survey) {
@@ -469,3 +476,5 @@ class HomeView extends Component {
 
 
 export default withStyles(styles)(withRouter(HomeView));
+
+
