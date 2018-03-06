@@ -7,45 +7,67 @@ const mailjet = require('node-mailjet')
 
 
 const groups = [
-    {
-        name: 'Testers',
-        contacts: [
-            {
-                "Email": "yohai.roz@gmail.com",
-                "Name": "Yohai"
-            },
-            {
-                "Email": "odedgruber@gmail.com",
-                "Name": "Oded"
-            },
-            {
-                "Email": "sam.elfassy@gmail.com",
-                "Name": "Sam"
-            },
-            {
-                "Email": "dan.nayot@gmail.com",
-                "Name": "Dan"
-            }
-        ]
-    },
+    // {
+    //     name: 'Testers',
+    //     contacts: [
+    //         {
+    //             "Email": "yohai.roz@gmail.com",
+    //             "Name": "Yohai"
+    //         },
+    //         {
+    //             "Email": "odedgruber@gmail.com",
+    //             "Name": "Oded"
+    //         },
+    //         {
+    //             "Email": "sam.elfassy@gmail.com",
+    //             "Name": "Sam"
+    //         },
+    //         {
+    //             "Email": "dan.nayot@gmail.com",
+    //             "Name": "Dan"
+    //         }
+    //     ]
+    // },
     {
         name: 'Gastroenterologists',
         contacts: [
             {
                 "Email": "yohai.roz@gmail.com",
-                "Name": "Yohai"
+                "Name": "Yohai_G"
             },
             {
-                "Email": "yohairosen@gmail.com",
-                "Name": "Moshe"
+                "Email": "odedgruber@gmail.com",
+                "Name": "Oded_G"
+            },
+            {
+                "Email": "sam.elfassy@gmail.com",
+                "Name": "Sam_G"
+            },
+            {
+                "Email": "dan.nayot@gmail.com",
+                "Name": "Dan_G"
             }
-
         ]
     },
     {
         name: 'REIs',
         contacts: [
-            'y.o.h.ai.r.o.z@gmail.com'
+            {
+                "Email": "y.o.h.ai.ro.z@gmail.com",
+                "Name": "Yohai_R"
+            },
+            {
+                "Email": "o.d.e.d.g.r.u.b.e.r@gmail.com",
+                "Name": "Oded_R"
+            },
+            {
+                "Email": "s.m.e.l.f.a.s.s.y@gmail.com",
+                "Name": "Sam_R"
+            },
+            {
+                "Email": "d.a.n.n.a.y.o.t@gmail.com",
+                "Name": "Dan_R"
+            }
         ]
     }
 ];
