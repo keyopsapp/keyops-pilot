@@ -2,7 +2,19 @@ class Parser {
     parseResults(results, survey) {
 
         this.data = survey;
-        this.res = results;
+
+        const questions = survey.pages.reduce((prev, curr) => {
+            return prev.concat(curr.elements)
+        }, []);
+
+
+        this.res = results = results.filter(item => {
+            const currentCount = Object.keys(item).length;
+            const globalCount = questions.length;
+
+            return currentCount === globalCount
+        });
+
         let tempResults = results.slice();
 
 
@@ -28,9 +40,6 @@ class Parser {
             }, {});
         }
 
-        const questions = survey.pages.reduce((prev, curr) => {
-            return prev.concat(curr.elements)
-        }, []);
 
         const counts = tempResults.reduce((item, val) => {
 

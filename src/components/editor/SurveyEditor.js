@@ -15,7 +15,7 @@ class SurveyEditor extends Component {
 
         defs["questionbase"].tabs = [{name: 'visibleIf', title: 'Visible If (Coming Soon)', index: 100}]
         defs["questionbase"]
-            .properties = ['name', 'description'];
+            .properties = ['name', 'description','isRequired'];
 
 
         defs["text"]
@@ -82,11 +82,20 @@ class SurveyEditor extends Component {
         this.propsToHide = ['visibleIf', 'choicesByUrl', 'rateValues'];
 //
 //
+        this.editor.onQuestionAdded.add((editor, options) => {
+            options.question.isRequired = true;
+        });
+
         this.editor.onCanShowProperty.add((editor, options) => {
-            options.canShow = true;
+
+            if (options.property.name === "isRequired") {
+                options.canShow = false;
+            }
+            else {
+                options.canShow = true;
+            }
             if (options.property.name === "visibleIf") {
                 options.property.alternativeName = 'visibleIf (coming soon)';
-                // console.log(options)
             }
         });
 

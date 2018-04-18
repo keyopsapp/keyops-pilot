@@ -78,6 +78,7 @@ class DisplayView extends Component {
 
         if (opt.oldCurrentPage  && opt.newCurrentPage.id > opt.oldCurrentPage.id || opt.isComplete) {
 
+            console.log(opt.oldCurrentPage)
             this.props.surveyStore.setAmount(this.props.surveyStore.getAmount() + Math.floor(Math.random() * 100) + 10  );
         }
     }, 200);
