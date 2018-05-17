@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {AppBar, Toolbar, Icon, IconButton, Badge, Button} from 'material-ui'
 import logo from '../../assets/logo.png';
+import ferringLogo from '../../assets/ferring_logo.svg';
 import {observe} from 'mobx';
 
 import {withStyles} from 'material-ui/styles';
@@ -21,6 +22,10 @@ const styles = theme => {
         logo: {
             height: 120,
             'margin-top': -27
+        },
+        ferringLogo:{
+            height: 45,
+            'margin-top': 10
         },
         appBar: {
             borderBottom: 'solid #EAEAEA 1px',
@@ -124,7 +129,9 @@ class Navigation extends Component {
                     {/*<Typography type="title" color="inherit">*/}
                     <Link to='/' className={classes.title} disabled={this.state.isDisplay}>
                         {/*KeyOps*/}
-                        <img src={logo} height={64} className={classes.logo}/>
+                        {this.state.isDisplay ?
+                            <img src={logo} height={64} className={classes.logo}/> :
+                            <img src={ferringLogo} height={50} className={classes.ferringLogo}/>}
 
                     </Link>
                     {/*</Typography>*/}
