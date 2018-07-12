@@ -23,7 +23,7 @@ class SurveyEditor extends Component {
             'isRequired'];
 
 
-        defs["text"]
+        defs["comment"]
             .properties = [{name: 'description', title: 'Additional info (if applicable)'}, {
             name: 'placeHolder',
             title: 'Sample answer (if applicable)'
