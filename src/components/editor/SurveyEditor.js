@@ -120,10 +120,6 @@ class SurveyEditor extends Component {
             if (t === 'checkbox') {
                 options.question.description = 'Check all that applies';
             }
-            if (t === 'rating') {
-                options.question.description = 'Rating values definitions';
-
-            }
             // if (options.property.name === "description") {
             //     options.obj.value = 'asdasds';
             //     options.obj.setDefaultValue()
