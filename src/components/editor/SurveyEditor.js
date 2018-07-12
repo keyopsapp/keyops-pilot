@@ -19,9 +19,15 @@ class SurveyEditor extends Component {
         defs["questionbase"].tabs = [{name: 'visibleIf', title: 'Visible If (Coming Soon)', index: 100}]
         defs["questionbase"]
             .properties = [
-            {name: 'name', title: 'Question text'},
+            {name: 'title', title: 'Question text'},
             'isRequired'];
 
+
+        defs["text"]
+            .properties = [{name: 'description', title: 'Additional info (if applicable)'}, {
+            name: 'placeHolder',
+            title: 'Sample answer (if applicable)'
+        }];
 
         defs["comment"]
             .properties = [{name: 'description', title: 'Additional info (if applicable)'}, {
@@ -29,23 +35,20 @@ class SurveyEditor extends Component {
             title: 'Sample answer (if applicable)'
         }];
 
+
         defs["selectbase"]
             .properties = [
-            {name: 'hasOther', 'title': 'Add "Other" option'},
-            {name: 'hasComment', 'title': 'Add "Other" option with comment'},
             {name: 'description', title: 'Further instructions'},
-            {
-                name: 'chocies', properties: [
-                {name: 'itemvalue', properties: [{name: 'text', visible: false}]}
+            {name: 'hasOther', 'title': 'Add "Other" option'},
+            // {name: 'hasComment', 'title': 'Add "Other" option with comment'},
 
-            ]
-            }
         ];
 
         defs["boolean"]
             .properties = [];
 
         defs["rating"].properties = [
+            {name: 'description', title: 'Additional info (if applicable)'},
             {name: 'rateMin', title: 'Min Rate Value'}, {
                 name: 'rateMax',
                 title: 'Max Rate Value'
@@ -107,15 +110,16 @@ class SurveyEditor extends Component {
             options.question.isRequired = true;
 
             var t = options.question.getType();
-            options.question.title = 'Q' + options.question.title.slice(1);
+            options.question.title = 'Insert text here...';
             // options.question.requiredText = '';
 
 
             console.log(options.question)
-            if (['dropdown', 'radiogroup'].indexOf(t) > -1) {
+            if (['dropdown', 'checkbox', 'radiogroup'].indexOf(t) > -1) {
                 options.question.description = 'Select best answer';
                 options.question.otherText = 'Other';
             }
+
 
             if (t === 'checkbox') {
                 options.question.description = 'Check all that applies';
@@ -131,13 +135,14 @@ class SurveyEditor extends Component {
 
             console.log(options.property.name)
 
-            if (options.property.name === 'choices') {
+            // if (options.property.name === 'choices') {
+            //
+            //     // options.property.visible= false
+            console.log(options)
+            // }
+            var t = options.obj.getType();
 
-                // options.property.visible= false
-                console.log(options)
-            }
-
-            if (options.property.name === "isRequired") {
+            if (options.property.name === "isRequired" || options.property.name === "optionsCaption") {
                 options.canShow = false;
             }
             else {
@@ -147,6 +152,12 @@ class SurveyEditor extends Component {
             if (options.property.name === "visibleIf") {
                 options.property.alternativeName = 'visibleIf (coming soon)';
             }
+
+            // if (t === 'dropdown') {
+            //     if (options.property.name === "hasComment") {
+            //         options.canShow = false;
+            //     }
+            // }
 
 
         });
