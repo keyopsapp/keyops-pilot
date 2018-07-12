@@ -23,7 +23,7 @@ const styles = theme => {
             height: 120,
             'margin-top': -27
         },
-        ferringLogo:{
+        ferringLogo: {
             height: 45,
             'margin-top': 10
         },
@@ -141,7 +141,9 @@ class Navigation extends Component {
                         <Icon style={{fontSize: 20, color: 'black'}}>file_download</Icon>
                         <span style={{color: 'black'}}>Export</span>
                     </Button>}
-
+                    {!this.state.isDisplay && <span className="main-title">
+                        <img src={logo} height={20} className={classes.logo}/> <span>Pilot Summer 2018</span>
+                    </span>}
                     <IconButton color="inherit" aria-label="Menu">
                         {icon}
                     </IconButton>

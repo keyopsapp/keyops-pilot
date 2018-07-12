@@ -154,6 +154,20 @@ h3 {
   padding: 1em 1em 5em 1em !important;
 }
 
+
+.main-title {
+  align-self: center;
+  display: block;
+  width: 50%;
+  color: black;
+  height: 60px;
+  overflow: hidden;
+  span {
+    position: relative;
+    top: -10px;
+
+  }
+}
 //  //padding-bottom: 30px!important;
 //  //padding-top: 0!important;
 //  //position: relative;
