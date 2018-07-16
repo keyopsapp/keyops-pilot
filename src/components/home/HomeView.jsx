@@ -243,7 +243,7 @@ class HomeView extends Component {
                                 day: 'numeric',
                                 hour: 'numeric',
                                 minute: 'numeric'
-                            }).format(new Date(survey.CreatedAt))}</Typography>
+                            }).format(new Date(survey.CreatedAt + 'Z'))}</Typography>
                         </div>
                         {/*<div className={classes.info}>*/}
                         {/*<Typography type="subheading" component="h3">*/}
@@ -316,7 +316,7 @@ class HomeView extends Component {
                                         day: 'numeric',
                                         hour: 'numeric',
                                         minute: 'numeric'
-                                    }).format(new Date(surveyStore.results.dateSubmitted))}
+                                    }).format(new Date(surveyStore.results.dateSubmitted + 'Z'))}
                                 </Typography>
                             </div>
                         </CardContent>

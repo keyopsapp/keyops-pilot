@@ -61,7 +61,7 @@ const groups = [
                 "Name": "Oded_R"
             },
             {
-                "Email": "s.m.e.l.f.a.s.s.y@gmail.com",
+                "Email": "s.a.m.e.l.f.a.s.s.y@gmail.com",
                 "Name": "Sam_R"
             },
             {
