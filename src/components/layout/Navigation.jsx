@@ -135,15 +135,19 @@ class Navigation extends Component {
 
                     </Link>
                     {/*</Typography>*/}
+
+                    {!this.state.isDisplay && <span className="main-title">
+                        <img src={logo} height={20} className={classes.logo}/> <span>Pilot Summer 2018</span>
+                    </span>}
+
+
                     {this.state.isResults &&
 
                     <Button href={`https://dxsurvey.com/Results/ExportResults/${surveyId}?format=csv`}>
                         <Icon style={{fontSize: 20, color: 'black'}}>file_download</Icon>
                         <span style={{color: 'black'}}>Export</span>
                     </Button>}
-                    {!this.state.isDisplay && <span className="main-title">
-                        <img src={logo} height={20} className={classes.logo}/> <span>Pilot Summer 2018</span>
-                    </span>}
+
                     <IconButton color="inherit" aria-label="Menu">
                         {icon}
                     </IconButton>

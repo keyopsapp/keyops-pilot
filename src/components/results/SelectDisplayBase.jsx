@@ -190,7 +190,7 @@ class SelectDisplayBase extends React.Component {
 
                         {/*<Typography className={classes.title}>Created: 12/11/2017</Typography>*/}
                         <Typography type="display2">
-                            {q.name}
+                            {q.title}
                         </Typography>
                         <div className={classes.pos}>
                             <Typography className={classes.pos2}>Total Answered: {q.numAnswered}</Typography>
@@ -200,7 +200,7 @@ class SelectDisplayBase extends React.Component {
                                 day: 'numeric',
                                 hour: 'numeric',
                                 minute: 'numeric'
-                            }).format(new Date(dateSubmitted))}</Typography>
+                            }).format(new Date(dateSubmitted + 'Z'))}</Typography>
                         </div>
                     </div>
                     {/*<div className={classes.info}>*/}

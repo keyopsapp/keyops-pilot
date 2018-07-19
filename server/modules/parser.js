@@ -114,6 +114,7 @@ class Parser {
                 return {
                     name: item[0],
                     results: obj,
+                    title: q.title,
                     type: q.type,
                     numAnswered: counts[item[0]]
                 };
