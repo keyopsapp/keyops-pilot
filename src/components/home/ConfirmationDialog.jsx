@@ -10,7 +10,8 @@ import green from 'material-ui/colors/green';
 
 const options = [
     {id: 0, name: 'Gastroenterologists'},
-    {id: 1, name: 'REIs'}
+    {id: 1, name: 'REIs'},
+    {id: 2, name: 'Admin'}
 ];
 
 class ConfirmationDialog extends React.Component {

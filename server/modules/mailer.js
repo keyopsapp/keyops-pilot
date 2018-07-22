@@ -7,69 +7,119 @@ const mailjet = require('node-mailjet')
 
 
 const groups = [
-    // {
-    //     name: 'Testers',
-    //     contacts: [
-    //         {
-    //             "Email": "yohai.roz@gmail.com",
-    //             "Name": "Yohai"
-    //         },
-    //         {
-    //             "Email": "odedgruber@gmail.com",
-    //             "Name": "Oded"
-    //         },
-    //         {
-    //             "Email": "sam.elfassy@gmail.com",
-    //             "Name": "Sam"
-    //         },
-    //         {
-    //             "Email": "dan.nayot@gmail.com",
-    //             "Name": "Dan"
-    //         }
-    //     ]
-    // },
     {
         name: 'Gastroenterologists',
         contacts: [
+
             {
-                "Email": "yohai.roz@gmail.com",
-                "Name": "Yohai_G"
+                "Email": "jeff.mosko@gmail.com",
+                "Name": "Dr. Jeffrey Mosko"
             },
             {
-                "Email": "odedgruber@gmail.com",
-                "Name": "Oded_G"
+                "Email": "Taliazenlea@gmail.com",
+                "Name": "Dr. Talia Zenlea"
+            },
+            {
+                "Email": "lindsay.crabbe@medportal.ca",
+                "Name": "Dr. Lindsay Crabbe"
+            },
+            {
+                "Email": "ian@gibookman.com",
+                "Name": "Dr. Ian Bookman"
+            },
+            {
+                "Email": "jonathonspringer1@gmail.com",
+                "Name": "Dr.Jonathon Springer"
+            },
+            {
+                "Email": "xenodet@gmail.com",
+                "Name": "Dr.Ted Xenodemetropoulos"
+            },
+            {
+                "Email": "Svoglis@hotmail.com",
+                "Name": "Dr.Stefan Voglis"
+            },
+            {
+                "Email": "abbasmerali@gmail.com",
+                "Name": "Dr.Abbas Merali"
+            },
+            {
+                "Email": "Lee_roth@hotmail.com",
+                "Name": "Dr.Lee Roth"
             },
             {
                 "Email": "sam.elfassy@gmail.com",
-                "Name": "Sam_G"
+                "Name": "Dr.Sam Elfassy"
             },
-            {
-                "Email": "dan.nayot@gmail.com",
-                "Name": "Dan_G"
-            }
         ]
     },
     {
         name: 'REIs',
         contacts: [
             {
-                "Email": "y.o.h.ai.ro.z@gmail.com",
-                "Name": "Yohai_R"
+                "Email": "mikehartman3@hotmail.com",
+                "Name": "Dr. Mike Hartman"
             },
             {
-                "Email": "o.d.e.d.g.r.u.b.e.r@gmail.com",
-                "Name": "Oded_R"
+                "Email": "jigalh@hotmail.com",
+                "Name": "Dr. Jigal Haas"
             },
             {
-                "Email": "s.a.m.e.l.f.a.s.s.y@gmail.com",
-                "Name": "Sam_R"
+                "Email": "binserri@gmail.com",
+                "Name": "Dr. Abdulrahman Alserri"
             },
             {
-                "Email": "d.a.n.n.a.y.o.t@gmail.com",
-                "Name": "Dan_R"
+                "Email": "dgurau@gmail.com",
+                "Name": "Dr. David Gurau"
+            },
+            {
+                "Email": "ruthronn@gmail.com",
+                "Name": "Dr. Ruthie Ronn"
+            },
+            {
+                "Email": "kaajal.abrol@gmail.com",
+                "Name": "Dr. Kaajal Abrol"
+            },
+            {
+                "Email": "Claire.Jones@sinaihealthsystem.ca",
+                "Name": "Dr. Claire Jones"
+            },
+            {
+                "Email": "ashleygilman@gmail.com",
+                "Name": "Dr. Ashley Gilman"
+            },
+            {
+                "Email": "caitlinmhdunne@yahoo.ca",
+                "Name": "Dr. Caitlin Dunne"
+            },
+            {
+                "Email": "dan.nayot@gmail.com",
+                "Name": "Dr. Dan Nayot"
+            },
+        ]
+    },
+
+    {
+        name: 'Admin',
+        contacts: [
+            {
+                "Email": "yohai.roz@gmail.com",
+                "Name": "Yohai"
+            },
+            {
+                "Email": "odedgruber@gmail.com",
+                "Name": "Oded"
+            },
+            {
+                "Email": "sam.elfassy@gmail.com",
+                "Name": "Sam"
+            },
+            {
+                "Email": "dan.nayot@gmail.com",
+                "Name": "Dan"
             }
         ]
-    }
+    },
 ];
 //
 // const groups = [

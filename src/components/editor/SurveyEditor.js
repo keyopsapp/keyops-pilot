@@ -114,7 +114,6 @@ class SurveyEditor extends Component {
             // options.question.requiredText = '';
 
 
-            console.log(options.question)
             if (['dropdown', 'checkbox', 'radiogroup'].indexOf(t) > -1) {
                 options.question.description = 'Select best answer';
                 options.question.otherText = 'Other';
