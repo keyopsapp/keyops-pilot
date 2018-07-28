@@ -8,12 +8,42 @@ class Parser {
         }, []);
 
 
-        this.res = results = results.filter(item => {
-            const currentCount = Object.keys(item).length;
-            const globalCount = questions.length;
+        // this.res = results = results.filter(item => {
 
-            return currentCount === globalCount
-        });
+        //     const currentCount = Object.keys(item).length;
+        //
+        //     const globalCount = questions.length;
+        //
+        //     return currentCount === globalCount
+        // });
+
+
+        this.res = results = results.reduce((res, item) => {
+
+            item = Object.entries(item).reduce((all, entry) => { //handle question{num}-Comment situations
+                key = entry[0].split('-')[0];
+
+                if (entry[0].indexOf('Comment') > -1) {
+                    entry[1] = 'other: ' + entry[1];
+                    let i = all[key].indexOf('other');
+                    if (i > -1)
+                        all[key].splice(i, 1);
+                }
+
+                if (Array.isArray(all[key])) {
+                    all[key].push(entry[1]);
+                }
+                else {
+                    all[key] = entry[1];
+                }
+
+                return all;
+            }, {});
+
+            res.unshift(item);
+            return res;
+
+        }, []);
 
         let tempResults = results.slice();
 

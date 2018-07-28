@@ -40,6 +40,7 @@ const styles = theme => {
             right: '50%',
             top: '200px',
             opacity: 0,
+            pointerEvents:'none',
 
             '&.animate': {
                 right: 22,
