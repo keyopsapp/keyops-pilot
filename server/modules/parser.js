@@ -105,6 +105,11 @@ class Parser {
                     return null;
                 }
 
+                if (item[0] == 'ClientId') {
+                    return null;
+                }
+
+
 
                 let groups = item[1].sort().reduce(function (prev, curr) {
                     if (prev.length && curr === prev[prev.length - 1][0]) {
