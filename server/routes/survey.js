@@ -284,9 +284,15 @@ const getSurveyResults = function (req, res, next) {
     return axios.get(`${privatePath}/getSurveyResults/${id}`, {
         params: {accessKey: accessKey}
     })
-        .then(response => results = response.data)
-        .then(response => axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}}))
-        .then(response => survey = response.data)
+        .then(response => {
+            return results = response.data
+        })
+        .then(response => {
+            return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
+        })
+        .then(response => {
+            return survey = response.data
+        })
         .then(() => {
             let data = parser.parseResults(results.Data, survey)
             data.totalResults = results.ResultCount;

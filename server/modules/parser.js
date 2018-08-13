@@ -20,6 +20,7 @@ class Parser {
 
         this.res = results = results.reduce((res, item) => {
 
+
             item = Object.entries(item).reduce((all, entry) => { //handle question{num}-Comment situations
                 key = entry[0].split('-')[0];
 
@@ -40,13 +41,31 @@ class Parser {
                 return all;
             }, {});
 
-            res.unshift(item);
+
+            if (res[item.ClientId]) { // combine results since we they are not grouped/aggregated by clientid
+
+                var prev = res[item.ClientId];
+
+                for(var key in item){
+                    if(!prev[key] || prev[key] == item[key]) {
+                        prev[key] = item[key];
+                    }
+                    else{
+                        prev[key] = [].concat(prev[key], item[key])
+                    }
+                }
+
+            } else {
+                res[item.ClientId] = item;
+            }
+
             return res;
 
-        }, []);
+        }, {});
+
+        results = Object.values(results);
 
         let tempResults = results.slice();
-
 
         if (results.length <= 1) {
             var temp = {};
@@ -108,7 +127,6 @@ class Parser {
                 if (item[0] == 'ClientId') {
                     return null;
                 }
-
 
 
                 let groups = item[1].sort().reduce(function (prev, curr) {
