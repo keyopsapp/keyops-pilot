@@ -47,10 +47,10 @@ class Parser {
                 var prev = res[item.ClientId];
 
                 for(var key in item){
-                    if(!prev[key] || prev[key] == item[key]) {
+                    if(!prev[key] || prev[key] == item[key] ) {
                         prev[key] = item[key];
                     }
-                    else{
+                    else  if(!Array.isArray(item[key])){
                         prev[key] = [].concat(prev[key], item[key])
                     }
                 }
