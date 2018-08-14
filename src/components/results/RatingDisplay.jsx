@@ -123,13 +123,25 @@ const styles = theme => ({
 class RatingDisplay extends React.Component {
 
 
-    state = {chartType: 'bar'};
+    state = {chartType: 'bar', };
 
     constructor() {
         super();
 
     };
 
+    componentWillMount() {
+        const labels = Object.keys(this.props.data.results);
+
+        const shortestLabel = labels.reduce((val, label) => Math.max(val, label.length), 0);
+
+        if (shortestLabel > 30) {
+            this.setState({
+                chartType:'pie',
+                hideBarOption: true
+            })
+        }
+    }
 
     changeChart(type) {
         this.setState({chartType: type});
@@ -142,61 +154,64 @@ class RatingDisplay extends React.Component {
         const values = Object.values(q.results);
         const answersTotal = values.reduce((n1, n2) => n1 + n2);
         const dataset = values.map(item => item / answersTotal * 100);
-        const labels = Object.keys(q.results);
+        // const labels = Object.keys(q.results).map(val => val.slice(0,30))
+        const labels = Object.keys(q.results)
 
+
+        const bgcolors = [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(239	,105,	80)',
+            'rgba(231	,72	,   86)',
+            'rgba(0	,120,	215)',
+            'rgba(0	,153,	188)',
+            'rgba(255	,140,	0)',
+            'rgba(232	,17	,    35)',
+            'rgba(0	,99	,   177)',
+            'rgba(45	,125,	154)',
+            'rgba(255	,185,	0)',
+            'rgba(93	,90	,    88)',
+            'rgba(247	,99	,    12)',
+            'rgba(234	,0	,    94)',
+            'rgba(142	,140,	216)',
+            'rgba(0	,183,	195)',
+            'rgba(104	,118,	138)',
+            'rgba(105	,121,	126)',
+            'rgba(202	,80	,    16)',
+            'rgba(195	,0	,    82)',
+            'rgba(107	,105,	214)',
+            'rgba(3	,131,	135)',
+            'rgba(74	,84	,    89)',
+            'rgba(218	,59	,    1)',
+            'rgba(227	,0	,    140)',
+            'rgba(135	,100,	184)',
+            'rgba(0	,178,	148)',
+            'rgba(86	,124,	115)',
+            'rgba(100	,124,	100)',
+            'rgba(191	,0	,    119)',
+            'rgba(116	,77	,    169)',
+            'rgba(1	,133,	116)',
+            'rgba(72	,104,	96)',
+            'rgba(209	,52 ,	56)',
+            'rgba(194	,57	,    179)',
+            'rgba(177	,70	,    194)',
+            'rgba(0	,204,	106)',
+            'rgba(73	,130,	5)',
+            'rgba(132	,117,	69)',
+            'rgba(255	,67 ,	67)',
+            'rgba(154	,0	,    137)',
+            'rgba(136	,23 ,	152)',
+            'rgba(16	,137,	62)',
+            'rgba(16	,124,	16)',
+            'rgba(126	,115,	95)'
+        ]
         const data = {
             labels: labels,
             datasets: [{
                 // label: '# of Votes',
                 data: dataset,//[12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(239	,105,	80)',
-                    'rgba(231	,72	,   86)',
-                    'rgba(0	,120,	215)',
-                    'rgba(0	,153,	188)',
-                    'rgba(255	,140,	0)',
-                    'rgba(232	,17	,    35)',
-                    'rgba(0	,99	,   177)',
-                    'rgba(45	,125,	154)',
-                    'rgba(255	,185,	0)',
-                    'rgba(93	,90	,    88)',
-                    'rgba(247	,99	,    12)',
-                    'rgba(234	,0	,    94)',
-                    'rgba(142	,140,	216)',
-                    'rgba(0	,183,	195)',
-                    'rgba(104	,118,	138)',
-                    'rgba(105	,121,	126)',
-                    'rgba(202	,80	,    16)',
-                    'rgba(195	,0	,    82)',
-                    'rgba(107	,105,	214)',
-                    'rgba(3	,131,	135)',
-                    'rgba(74	,84	,    89)',
-                    'rgba(218	,59	,    1)',
-                    'rgba(227	,0	,    140)',
-                    'rgba(135	,100,	184)',
-                    'rgba(0	,178,	148)',
-                    'rgba(86	,124,	115)',
-                    'rgba(100	,124,	100)',
-                    'rgba(191	,0	,    119)',
-                    'rgba(116	,77	,    169)',
-                    'rgba(1	,133,	116)',
-                    'rgba(72	,104,	96)',
-                    'rgba(209	,52 ,	56)',
-                    'rgba(194	,57	,    179)',
-                    'rgba(177	,70	,    194)',
-                    'rgba(0	,204,	106)',
-                    'rgba(73	,130,	5)',
-                    'rgba(132	,117,	69)',
-                    'rgba(255	,67 ,	67)',
-                    'rgba(154	,0	,    137)',
-                    'rgba(136	,23 ,	152)',
-                    'rgba(16	,137,	62)',
-                    'rgba(16	,124,	16)',
-                    'rgba(126	,115,	95)'
-                ],
+                backgroundColor: bgcolors,
                 // borderColor: [
                 //     'rgba(255,99,132,1)',
                 //     'rgba(54, 162, 235, 1)',
@@ -263,7 +278,7 @@ class RatingDisplay extends React.Component {
         return (
 
             <Card className={classes.card}>
-                <CardHeader
+                {!this.state.hideBarOption && <CardHeader
                     action={<div>
                         <IconButton onClick={() => this.changeChart('pie')} disabled={this.state.chartType === 'pie'}>
                             <Icon>pie_chart</Icon>
@@ -273,7 +288,7 @@ class RatingDisplay extends React.Component {
                         </IconButton></div>
                     }
 
-                />
+                />}
                 <CardContent className={classes.cardContnet}>
 
 
@@ -310,6 +325,7 @@ class RatingDisplay extends React.Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
+                                    <TableCell  style={{padding: 0}}></TableCell>
                                     <TableCell padding='dense'>Choices</TableCell>
                                     <TableCell numeric>Responses %</TableCell>
                                     <TableCell numeric># Chosen</TableCell>
@@ -328,11 +344,14 @@ class RatingDisplay extends React.Component {
                                     return (
 
                                         <TableRow key={'i' + i}>
+                                            <TableCell  style={{padding: 0}}>
+                                                <div
+                                                    style={{backgroundColor: bgcolors[i], width: 10, height: 10}}></div>
+                                            </TableCell>
                                             <TableCell>{l}</TableCell>
                                             <TableCell
                                                 numeric>{(dataset[i]).toFixed(2)}%</TableCell>
                                             <TableCell numeric>{values[i]}</TableCell>
-                                            {/*<TableCell numeric>{n.calories}</TableCell>*/}
                                         </TableRow>
                                     );
                                 })}
