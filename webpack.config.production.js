@@ -64,7 +64,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production'),
-                'ACCESS_KEY': JSON.stringify('b4a00480f27c438596d828bc42da477a')
+                'ACCESS_KEY': JSON.stringify('a791ca62357f470d913d88d353e351e0')
             }
         }),
         new webpack.NamedModulesPlugin(),

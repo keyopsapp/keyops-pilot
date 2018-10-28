@@ -7,9 +7,9 @@
     "node": "8.4.0"
   },
   "scripts": {
-    "start": "env DOMAIN=keyops.io env ACCESS_KEY=b4a00480f27c438596d828bc42da477a node server/server.js",
-    "start:dev": "env NODE_ENV=development env ACCESS_KEY=b4a00480f27c438596d828bc42da477a node server/server.js",
-    "start:debug": "env NODE_ENV=development env ACCESS_KEY=b4a00480f27c438596d828bc42da477a node $NODE_DEBUG_OPTION server/server.js",
+    "start": "node server/server.js",
+    "start:dev": "env NODE_ENV=development env ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node server/server.js",
+    "start:debug": "env NODE_ENV=development env ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node $NODE_DEBUG_OPTION server/server.js",
     "build:dev": "rimraf ./dist && webpack --config webpack.config.js",
     "build:prod": "rm -rf ./dist && webpack --config webpack.config.production.js",
     "heroku-postbuild": "npm rebuild node-sass && npm run build:prod",
