@@ -1,15 +1,16 @@
 'use strict';
 
-const express = require('express');
+// const express = require('express');
 const parser = require('../modules/parser');
-const router = express.Router(); // eslint-disable-line new-cap
+// const router = express.Router(); // eslint-disable-line new-cap
 const Survey = require('../models/survey');
-const survey = new Survey();
-const boom = require('boom');
+// const survey = new Survey();
+// const boom = require('boom');
 const mailer = require('../modules/mailer');
-const accessKey = 'b4a00480f27c438596d828bc42da477a';
-const publicEndpoint = 'http://surveyjs.io/api/MySurveys';
-const publicOwnerId = 'keyopsmvp';
+const accessKey = process.env.ACCESS_KEY;
+console.log('access key', accessKey);
+// const publicEndpoint = 'http://surveyjs.io/api/MySurveys';
+// const publicOwnerId = 'keyopsmvp';
 const axios = require('axios');
 const publicPath = 'http://api.dxsurvey.com/api/Survey';
 const privatePath = 'http://surveyjs.io/api/MySurveys';

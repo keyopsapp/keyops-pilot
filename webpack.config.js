@@ -63,6 +63,12 @@ module.exports = {
       extensions: ['*', '.js', '.jsx']
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                    // 'NODE_ENV': JSON.stringify('production'),
+                'ACCESS_KEY': JSON.stringify('b4a00480f27c438596d828bc42da477a')
+            }
+        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("assets/styles/styles.css"),

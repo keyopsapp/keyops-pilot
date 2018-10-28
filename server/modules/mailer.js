@@ -167,6 +167,7 @@ module.exports = {
                         "TemplateLanguage": true,
                         "Subject": "A new survey is ready for submission!",
                         "Variables": {
+                            "domain": process.env.DOMAIN || 'keyops.io',
                             "survey_name": surveyName,
                             "survey_id": surveyId,
                             "client_id": clientId,

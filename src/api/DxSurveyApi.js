@@ -62,4 +62,6 @@ export default class SurveyApi {
 SurveyApi.surveyPath = '/api/survey';
 SurveyApi.publicPath = 'https://api.dxsurvey.com';
 SurveyApi.privatePath = 'https://surveyjs.io/api/MySurveys';
-SurveyApi.accessKey = 'b4a00480f27c438596d828bc42da477a';
+SurveyApi.accessKey = process.env.ACCESS_KEY;
+
+// console.log('test',process.env.ACCESS_KEY);
