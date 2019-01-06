@@ -106,18 +106,18 @@ const groups = [
                 "Email": "yohai.roz@gmail.com",
                 "Name": "Yohai"
             },
-            {
-                "Email": "odedgruber@gmail.com",
-                "Name": "Oded"
-            },
-            {
-                "Email": "sam.elfassy@gmail.com",
-                "Name": "Sam"
-            },
-            {
-                "Email": "dan.nayot@gmail.com",
-                "Name": "Dan"
-            }
+            // {
+            //     "Email": "odedgruber@gmail.com",
+            //     "Name": "Oded"
+            // },
+            // {
+            //     "Email": "sam.elfassy@gmail.com",
+            //     "Name": "Sam"
+            // },
+            // {
+            //     "Email": "dan.nayot@gmail.com",
+            //     "Name": "Dan"
+            // }
         ]
     },
 ];

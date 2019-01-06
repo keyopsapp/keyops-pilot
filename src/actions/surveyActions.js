@@ -1,12 +1,16 @@
 import surveyStore from '../stores/SurveyStore';
 import api from '../api';
-
+const DATA = [{"Name":"Ferring Test survey","IsArchived":false,"UserId":"c6a354b9-44e3-42c3-b21a-89ea72da4150","CreatorId":"00000000-0000-0000-0000-000000000000","PostId":"53ae2057-2df2-42cd-adb8-35788e38a6e4","ResultId":"31fa82b2-ca09-49f1-a2de-e4f66f5a084d","PublishId":null,"IsPublished":false,"UseCookies":false,"UpdatedOn":"2018-10-28T08:53:40.3014604","CreatedAt":"2018-10-28T08:53:26.3237254","AllowAccessResult":false,"StoreIPAddress":false,"Theme":null,"Id":"320a4639-9f77-4dc4-87ed-17be6fb2c801"}];
 export function getSurveys() {
     return api.surveyApi.getSurveys()
         .then(res => surveyStore.getSurveys(res))
         .catch(err => {
             console.error(err);
         });
+
+
+    surveyStore.getSurveys(DATA)
+    return Promise.resolve(DATA);
 }
 
 export function getSurveyById(id) {

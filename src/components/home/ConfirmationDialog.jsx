@@ -1,55 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import Dialog, {DialogActions, DialogContent, DialogTitle} from 'material-ui/Dialog';
-import Radio, {RadioGroup} from 'material-ui/Radio';
-import {FormControlLabel} from 'material-ui/Form';
-import {withStyles} from 'material-ui/styles';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
+import Radio, { RadioGroup } from 'material-ui/Radio';
+import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
+import { Checkbox } from 'material-ui';
 
 
 const options = [
-    {id: 0, name: 'Gastroenterologists'},
-    {id: 1, name: 'REIs'},
-    {id: 2, name: 'Admin'}
+    { id: 0, name: 'Gastroenterologists' },
+    { id: 1, name: 'REIs' }
 ];
 
 class ConfirmationDialog extends React.Component {
     state = {
-        value: undefined,
     };
 
-    componentWillMount() {
-        this.setState({value: this.props.value});
-    }
+    // componentWillMount() {
+    //     this.setState({ value: this.props.value });
+    // }
 
-    componentWillUpdate(nextProps) {
-        if (nextProps.value !== this.props.value) {
-            // eslint-disable-next-line react/no-will-update-set-state
-            this.setState({value: nextProps.value});
-        }
-    }
+    // componentWillUpdate(nextProps) {
+    //     if (nextProps.value !== this.props.value) {
+    //         this.setState({ value: nextProps.value });
+    //     }
+    // }
 
-    radioGroup = null;
 
-    handleEntering = () => {
-        this.radioGroup.focus();
-    };
+    // handleEntering = () => {
+    //     this.radioGroup.focus();
+    // };
 
     handleCancel = () => {
-        this.props.onClose(this.props.value);
+        this.setState({});
+        this.props.onClose();
     };
 
     handleOk = () => {
-        this.props.onOk(this.state.value);
+        const selectedGroups =
+            Object.entries(this.state)
+                .reduce((groups, entry) => {
+                    if (entry[1])
+                        groups.push(entry[0]);
+                    return groups;
+                }, []);
+
+        console.log(selectedGroups);
+        // this.props.onOk(selectedGroups);
     };
 
-    handleChange = (event, value) => {
-        this.setState({value});
+    handleChange = id => event => {
+        this.setState({ [id]: event.target.checked });
     };
 
     render() {
-        const {value, classes, ...other} = this.props;
+        const { value, classes, ...other } = this.props;
 
         return (
             <Dialog
@@ -62,34 +69,26 @@ class ConfirmationDialog extends React.Component {
             >
                 <DialogTitle id="confirmation-dialog-title">Please choose a group</DialogTitle>
                 <DialogContent>
-                    <RadioGroup
-
-                        ref={node => {
-                            this.radioGroup = node;
-                        }}
+                    <FormGroup
                         aria-label="group"
-                        name="group"
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                    >
+                        name="group">
                         {options.map(option => (
                             <FormControlLabel
-                                value={option.id.toString()} key={option.id} control={<Radio
-
-                                classes={{
-                                    checked: classes.checked,
-                                }}
-
-
-                            />} label={option.name}/>
+                                value={option.id.toString()}
+                                key={option.id}
+                                label={option.name}
+                                color="accent"
+                                control={<Checkbox
+                                    className="checkbox-style"
+                                    onChange={this.handleChange(option.id)} />} />
                         ))}
-                    </RadioGroup>
+                    </FormGroup>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.handleCancel} color="secondary">
+                    <Button onClick={this.handleCancel} color="contrast">
                         Cancel
                     </Button>
-                    <Button onClick={this.handleOk} color="secondary">
+                    <Button onClick={this.handleOk} color="contrast">
                         Ok
                     </Button>
                 </DialogActions>
@@ -105,8 +104,9 @@ ConfirmationDialog.propTypes = {
 };
 
 const styles = {
-    checked: {
-        color: green[500],
+    checkbox: {
+        default: green[600],
+        checked: green[500]
     }
 }
 

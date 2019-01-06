@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  web:
+    image: keymetrics/pm2:8-alpine
+    restart: always
+    container_name: keyops
+    ports:
+      - 4000:4000
+    environment:
+      - ACCESS_KEY=a791ca62357f470d913d88d353e351e0
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: pm2-runtime ./server/server.js

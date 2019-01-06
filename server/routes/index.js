@@ -2,17 +2,17 @@
 
 const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
-const exampleRoutes = require('./example');
+// const exampleRoutes = require('./example');
 const surveyRoutes = require('./survey');
 
-router.route('/example')
-  .get(exampleRoutes.getAllExamples)
-  .post(exampleRoutes.createExample)
+// router.route('/example')
+//   .get(exampleRoutes.getAllExamples)
+//   .post(exampleRoutes.createExample)
 
-router.route('/example/:id')
-  .get(exampleRoutes.getExampleById)
-  .put(exampleRoutes.updateExample)
-  .delete(exampleRoutes.deleteExample)
+// router.route('/example/:id')
+//   .get(exampleRoutes.getExampleById)
+//   .put(exampleRoutes.updateExample)
+//   .delete(exampleRoutes.deleteExample)
 
 
 router.route('/survey')
@@ -33,6 +33,9 @@ router.route('/survey/:id/results')
 
 router.route('/survey/:id/rename')
     .get(surveyRoutes.changeSurveyName)
+
+router.route('/survey/:id/copy')
+    .get(surveyRoutes.copySurvey)
 
 
 router.route('/survey/:id/sendTestEmail')

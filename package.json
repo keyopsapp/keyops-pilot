@@ -7,7 +7,8 @@
     "node": "8.4.0"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node server/server.js",
+    "debug": "ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node --inspect-brk=9229 server/server.js",
     "start:dev": "env NODE_ENV=development env ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node server/server.js",
     "start:debug": "env NODE_ENV=development env ACCESS_KEY=a791ca62357f470d913d88d353e351e0 node $NODE_DEBUG_OPTION server/server.js",
     "build:dev": "rimraf ./dist && webpack --config webpack.config.js",
@@ -93,6 +94,7 @@
     "mobx-react-devtools": "^4.2.6",
     "moment": "^2.15.1",
     "morgan": "^1.8.1",
+    "node-fetch": "^2.3.0",
     "node-mailer": "^0.1.1",
     "node-mailjet": "^3.2.1",
     "nodemailer": "^4.4.1",

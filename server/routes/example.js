@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
 const Example = require('../models/example');
 const example = new Example();
-const boom = require('boom');
+const boom = {}//require('boom');
 
 const getAllExamples = function(req, res, next) {
   Example.forge()

@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  web:
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    container_name: keyops
+    network_mode: host
+    environment:
+      # - NODE_ENV=development
+      - ACCESS_KEY=a791ca62357f470d913d88d353e351e0
+    command: pm2-runtime start ./pm2.json

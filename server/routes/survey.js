@@ -3,7 +3,7 @@
 // const express = require('express');
 const parser = require('../modules/parser');
 // const router = express.Router(); // eslint-disable-line new-cap
-const Survey = require('../models/survey');
+// const Survey = require('../models/survey');
 // const survey = new Survey();
 // const boom = require('boom');
 const mailer = require('../modules/mailer');
@@ -12,8 +12,10 @@ console.log('access key', accessKey);
 // const publicEndpoint = 'http://surveyjs.io/api/MySurveys';
 // const publicOwnerId = 'keyopsmvp';
 const axios = require('axios');
+const fetch = require('node-fetch');
+
 const publicPath = 'http://api.dxsurvey.com/api/Survey';
-const privatePath = 'http://surveyjs.io/api/MySurveys';
+const privatePath = 'https://surveyjs.io/api/MySurveys';
 
 
 const getAllSurveys = function (req, res, next) {
@@ -30,18 +32,27 @@ const getAllSurveys = function (req, res, next) {
     //     params: {accessKey: accessKey}
     // })
 
-    return axios.get(`${privatePath}/getActive`, {params: {ownerId: 'keyops', accessKey: accessKey}})
-        .then(response => {
-
-            res.json(response.data);
-        })
-        .catch(err => {
-            return next(err);
-        })
+    return fetch("http://surveyjs.io/api/MySurveys/getActive?accessKey=b4a00480f27c438596d828bc42da477a")
+    .then(data => {
+        return data.json();
+    })
+    .then(body => {
+        return res.json(body)
+    })
+    .catch(err => {
+        return next(err);
+    })
+    // return axios.get("https://surveyjs.io/api/MySurveys/getActive?accessKey=a791ca62357f470d913d88d353e351e0&ownerId=ferring-keyops")
+    //     .then(response => {
+    //         res.json(response.data);
+    //     })
+    //     .catch(err => {
+    //         return next(err);
+    //     })
 };
 
 const getSurveyById = function (req, res, next) {
-    const {id} = req.params;
+    const { id } = req.params;
 
     // api/Survey/getSurvey?surveyId={surveyId}
     // Survey.forge().where({id})
@@ -53,7 +64,7 @@ const getSurveyById = function (req, res, next) {
     //         return next(err);
     //     })
 
-    return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
+    return axios.get(`${publicPath}/getSurvey`, { params: { surveyId: id } })
         .then(response => {
             res.json(response.data);
         })
@@ -64,8 +75,36 @@ const getSurveyById = function (req, res, next) {
 
 };
 
+const copySurvey = function (req, res, next) {
+    const { id, groupId } = req.params;
+
+    return axios.get(`${privatePath}/create`, {
+        params: {
+            accessKey: accessKey,
+            ownerId: 'keyops',
+            name: 'copy2'
+        }
+    })
+       
+        .then(response => {
+            const newId = response.data.Id;
+            return axios.get(`${publicPath}/getSurvey`, { params: { surveyId: id } })
+            .then(response => {
+                return chnageJson(newId, JSON.stringify(response.data));
+            })
+        })
+        .then(response => {
+            const { Id, PostId } = response.data
+            return doStartSurvey(Id, PostId, 2, 'copy');
+        })
+        .then(response => res.json(response.data))
+        .catch(err => {
+            return next(err);
+        });
+}
+
 const createSurvey = function (req, res, next) {
-    const {name, data} = req.body;
+    const { name, data } = req.body;
 
     // console.log(name)
     // const newSurvey = {name, data};
@@ -86,7 +125,7 @@ const createSurvey = function (req, res, next) {
     return axios.get(`${privatePath}/create`, {
         params: {
             accessKey: accessKey,
-            ownerId: 'keyops',
+            ownerId: 'ferring-keyops',
             name: name
         }
     })
@@ -105,13 +144,13 @@ const chnageJson = function (id, data) {
         Json: data,
         Id: id
     }, {
-        params: {accessKey: accessKey}
-    })
+            params: { accessKey: accessKey }
+        })
 }
 
 const updateSurvey = function (req, res, next) {
-    const {id} = req.params;
-    const {data} = req.body;
+    const { id } = req.params;
+    const { data } = req.body;
     // console.log('wow1')
     // console.log(req.body)
     // const nextSurvey = {name, data, status};
@@ -157,11 +196,25 @@ const updateSurvey = function (req, res, next) {
 
 
 const startSurvey = function (req, res, next) {
-    const {id} = req.params;
-    const {group, name, clientId} = req.query;
+    const { id } = req.params;
+    const { group, name, clientId } = req.query;
 
+    return doStartSurvey(id, clientId, group, name)
+        .then(response => {
+            res.json(response.data);
+        })
+        .catch(err => {
 
-    return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
+            if (err === 'no-group' || 'fail-send') {
+                return res.status(400);
+            }
+
+            return next(err);
+        })
+}
+const doStartSurvey = function (id, clientId, group, name) {
+
+    return axios.get(`${publicPath}/getSurvey`, { params: { surveyId: id } })
         .then(response => {
 
             const survey = response.data;
@@ -171,13 +224,13 @@ const startSurvey = function (req, res, next) {
                 "elements": [{
                     type: "html",
                     html: "Please answer the question(s) on the next page. Your name is not attached to your response when presented to the industry sponsor. <br>" +
-                    "<br>" +
-                    "After you complete the question you can click submit and you can close your browser if you wish. <br>" +
-                    "<br>" +
-                    "Please let us know if there are any technical issues.<br>" +
-                    "<br>" +
-                    "Thanks again<br>" +
-                    "The Keyops Team",
+                        "<br>" +
+                        "After you complete the question you can click submit and you can close your browser if you wish. <br>" +
+                        "<br>" +
+                        "Please let us know if there are any technical issues.<br>" +
+                        "<br>" +
+                        "Thanks again<br>" +
+                        "The Keyops Team",
                     name: "start_survey"
                 }]
             }, ...survey.pages];
@@ -187,7 +240,7 @@ const startSurvey = function (req, res, next) {
 
 
         .then(response => {
-            return axios.get(`${privatePath}/publish/${id}`, {params: {generateNewId: true, accessKey: accessKey}})
+            return axios.get(`${privatePath}/publish/${id}`, { params: { generateNewId: true, accessKey: accessKey } })
         })
         .then(response => {
             return axios.get(`${privatePath}/makeResultPublic/${id}`, {
@@ -203,27 +256,16 @@ const startSurvey = function (req, res, next) {
                 .then(() => response)
 
         })
-        .then(response => {
-            res.json(response.data);
-        })
-        .catch(err => {
 
-            if (err === 'no-group' || 'fail-send') {
-                return res.status(400);
-            }
-
-
-            return next(err);
-        })
 
 
 }
 
 const changeSurveyName = function (req, res, next) {
-    const {id} = req.params;
-    const {name} = req.query;
+    const { id } = req.params;
+    const { name } = req.query;
 
-    return axios.get(`${privatePath}/changeName`, {params: {id: id, name: name, accessKey: accessKey}})
+    return axios.get(`${privatePath}/changeName`, { params: { id: id, name: name, accessKey: accessKey } })
         .then(response => {
             res.json(response.data);
         })
@@ -262,12 +304,12 @@ const changeSurveyName = function (req, res, next) {
 
 
 const deleteSurvey = function (req, res, next) {
-    const {id} = req.params;
+    const { id } = req.params;
 
     Survey.forge().where('id', id)
         .destroy()
         .then(() => {
-            res.json({message: 'Survey Sucessfully Deleted'});
+            res.json({ message: 'Survey Sucessfully Deleted' });
         })
         .catch(err => {
             next(err);
@@ -278,18 +320,18 @@ const deleteSurvey = function (req, res, next) {
 
 
 const getSurveyResults = function (req, res, next) {
-    const {id} = req.params;
+    const { id } = req.params;
     let results;
     let survey;
 
     return axios.get(`${privatePath}/getSurveyResults/${id}`, {
-        params: {accessKey: accessKey}
+        params: { accessKey: accessKey }
     })
         .then(response => {
             return results = response.data
         })
         .then(response => {
-            return axios.get(`${publicPath}/getSurvey`, {params: {surveyId: id}})
+            return axios.get(`${publicPath}/getSurvey`, { params: { surveyId: id } })
         })
         .then(response => {
             return survey = response.data
@@ -309,20 +351,20 @@ const getSurveyResults = function (req, res, next) {
 
 const sendTestEmail = function (req, res, next) {
 
-        const {id} = req.params;
-        const {group, name} = req.query;
+    const { id } = req.params;
+    const { group, name } = req.query;
 
-        return mailer.send(id, name, group)
-            .then((response) => {
-                res.json(response);
-            })
-            .catch(err => {
-                next(err);
-            });
+    return mailer.send(id, name, group)
+        .then((response) => {
+            res.json(response);
+        })
+        .catch(err => {
+            next(err);
+        });
 
 
-    }
-;
+}
+    ;
 
 module.exports = {
     getAllSurveys,
@@ -333,7 +375,8 @@ module.exports = {
     startSurvey,
     getSurveyResults,
     changeSurveyName,
-    sendTestEmail
+    sendTestEmail,
+    copySurvey
 }
 
 

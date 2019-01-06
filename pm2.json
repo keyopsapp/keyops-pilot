@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "keyops",
+      "script": "./server/server.js"
+    }
+  ]
+}

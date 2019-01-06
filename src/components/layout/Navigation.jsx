@@ -121,7 +121,7 @@ class Navigation extends Component {
 
             <AppBar className={classes.appBar} elevation={0}>
                 <Icon style={{fontSize: 36, color: '#1ab394'}}
-                      className={[classes.moneyAnimation].concat(this.state.animateBadge ? 'animate' : '')}>
+                      className={[classes.moneyAnimation].concat(this.state.animateBadge ? 'animate' : '').join(' ')}>
                     monetization_on </Icon>
                 <Toolbar>
                     <IconButton color="inherit" aria-label="Menu">

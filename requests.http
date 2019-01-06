@@ -1,0 +1,33 @@
+
+GET http://localhost:3000/api/survey/320a4639-9f77-4dc4-87ed-17be6fb2c801/copy HTTP/1.1
+
+###
+
+GET http://surveyjs.io/api/MySurveys/create
+?accessKey=a791ca62357f470d913d88d353e351e0
+&ownerId=keyops
+&name=test
+
+
+
+
+
+
+###
+
+GET http://surveyjs.io/api/MySurveys/getActive
+?accessKey=a791ca62357f470d913d88d353e351e0
+&ownerId=keyops
+
+
+
+
+
+
+
+
+
+
+###
+
+GET http://api.dxsurvey.com/api/Survey/getSurvey?surveyId=320a4639-9f77-4dc4-87ed-17be6fb2c801

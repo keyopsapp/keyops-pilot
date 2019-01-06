@@ -7,10 +7,10 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 
-const defaultServerPort = 3000;
+const defaultServerPort = 4000;
 const devServerPort = 8000;
 const webpackServerPort = defaultServerPort;
-let expressServerPort = process.env.PORT || defaultServerPort;
+let expressServerPort = 4000//process.env.PORT || defaultServerPort;
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -18,8 +18,8 @@ const morgan = require('morgan');
 
 const app = express();
 
-const compression = require('compression');
-app.use(compression());
+// const compression = require('compression');
+// app.use(compression());
 
 const routes = require('./routes');
 
@@ -101,13 +101,15 @@ app.use((err, _req, res, _next) => {
   res.sendStatus(500);
 });
 
-app.listen(expressServerPort, () => {
-  if (process.env.NODE_ENV === 'development') {
+console.log('ok')
+app.listen(4000, () => {
+  console.log('ok2')
+  // if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
     console.log('"TAKE THESE API ROUTES OVER TO PORT', expressServerPort, 'WILL YA? I WANT \'EM CLEANED UP BEFORE DINNER."');
     console.log('***********************************************************');
     console.log('BUT I WAS GOING INTO PORT', webpackServerPort, 'TO PICK UP SOME POWER CONVERTERS!');
-  }
+  // }
 });
 
 module.exports = app;

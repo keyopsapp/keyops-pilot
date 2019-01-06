@@ -305,9 +305,9 @@ class HomeView extends Component {
                         <CardContent className={classes.infoCardContent}>
                             <div className={classes.infoCardValue}>
                                 <Typography className={classes.mainTitle}>Last submitted at:</Typography>
-                                <Typography type="headline" component="h2">
+                                {/* <Typography type="headline" component="h2"> */}
                                     {/*be{bull}nev{bull}o{bull}lent*/}
-                                </Typography>
+                                {/* </Typography> */}
                                 {/*<Typography className={classes.pos}>adjective</Typography>*/}
                                 <Typography type="headline" component="h2">
                                     {new Intl.DateTimeFormat('en-GB', {
@@ -330,9 +330,9 @@ class HomeView extends Component {
                         <CardContent className={classes.infoCardContent}>
                             <div className={classes.infoCardValue}>
                                 <Typography className={classes.mainTitle}>Participants:</Typography>
-                                <Typography type="headline" component="h2">
+                                {/* <Typography type="headline" component="h2"> */}
                                     {/*be{bull}nev{bull}o{bull}lent*/}
-                                </Typography>
+                                {/* </Typography> */}
                                 {/*<Typography className={classes.pos}>adjective</Typography>*/}
                                 <Typography type="headline" component="h2">
                                     {surveyStore.results.data[0].numAnswered}
@@ -354,9 +354,9 @@ class HomeView extends Component {
             surveyInfo = <Card className={classes.infoCard} elevation={0}>
                 <CardContent>
                     <Typography className={classes.mainTitle}>Survey info</Typography>
-                    <Typography type="headline" component="h2">
+                    {/* <Typography type="headline" component="h2"> */}
                         {/*be{bull}nev{bull}o{bull}lent*/}
-                    </Typography>
+                    {/* </Typography> */}
                     {/*<Typography className={classes.pos}>adjective</Typography>*/}
                     <Typography component="p">
                         {msg}

@@ -71,7 +71,7 @@ const theme = createMuiTheme({
     palette: {
         primary: {...teal, 500: '#FFFFFF', },
         secondary: {...teal, 'A200': '#288fcc'},
-        error: red,
+        error: red
     }
 
 });
